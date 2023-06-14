@@ -456,6 +456,37 @@ namespace AppGestionTFG
             return provs;
 
         }
+
+
+        //MATERIA PRIMA
+        public DataTable getPaquetes(DateTime fechadesde, DateTime fechahasta)
+        {
+            DataTable dt = new DataTable();
+
+            DataTable paqs = new DataTable();
+
+            SqlConnection conn = new SqlConnection(connString);
+            SqlDataAdapter adapter1 = new SqlDataAdapter();
+
+            conn.Open();
+
+            string strsql = "select N_PAQUETE, PARCELA, FECHA_RECP, CONFIRMADO from tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN where CAST (FECHA_RECP AS DATE) <= '" + fechahasta.ToString("yyyy'-'MM'-'dd") + "' AND CAST (FECHA_RECP AS DATE) >= '" + fechadesde.ToString("yyyy'-'MM'-'dd") + "'";
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            using (conn)
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(
+                    strsql, conn);
+                adapter.Fill(paqs);
+            }
+
+            conn.Close();
+
+            return paqs;
+
+        }
+
     }
 
     
