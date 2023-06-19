@@ -77,6 +77,12 @@
     <Compile Include="MateriaPrima\MateriaPrima.Designer.cs">
       <DependentUpon>MateriaPrima.cs</DependentUpon>
     </Compile>
+    <Compile Include="PaquetesAlmacen\PaquetesAlmacen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaquetesAlmacen\PaquetesAlmacen.Designer.cs">
+      <DependentUpon>PaquetesAlmacen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MateriaPrima\MateriaPrima.resx">
       <DependentUpon>MateriaPrima.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaquetesAlmacen\PaquetesAlmacen.resx">
+      <DependentUpon>PaquetesAlmacen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>

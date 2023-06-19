@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AppGestionTFG
 
@@ -14,7 +15,8 @@ namespace AppGestionTFG
     internal class FuncionesBD
     {
 
-        string connString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+        static string connString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+        SqlConnection conn = new SqlConnection(connString);
         public string obtenerPrivilegiosUsuario(string user, string pass)
         {
             string priv = "";
@@ -458,34 +460,201 @@ namespace AppGestionTFG
         }
 
 
-        //MATERIA PRIMA
-        public DataTable getPaquetes(DateTime fechadesde, DateTime fechahasta)
+        //PAQUETES ALMACÉN
+        public DataTable obtenerAlmacenes()
         {
-            DataTable dt = new DataTable();
+            string strsql;
+            SqlCommand comando;
+            SqlDataAdapter adapter;
+            DataTable table = null;
 
-            DataTable paqs = new DataTable();
 
-            SqlConnection conn = new SqlConnection(connString);
-            SqlDataAdapter adapter1 = new SqlDataAdapter();
-
-            conn.Open();
-
-            string strsql = "select N_PAQUETE, PARCELA, FECHA_RECP, CONFIRMADO from tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN where CAST (FECHA_RECP AS DATE) <= '" + fechahasta.ToString("yyyy'-'MM'-'dd") + "' AND CAST (FECHA_RECP AS DATE) >= '" + fechadesde.ToString("yyyy'-'MM'-'dd") + "'";
-            SqlCommand cmd = new SqlCommand(strsql, conn);
-
-            using (conn)
+            try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                adapter.SelectCommand = new SqlCommand(
-                    strsql, conn);
-                adapter.Fill(paqs);
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + " select DISTINCT NOMBRE, COD_ALMACEN from tfgdb.dbo.ALMACENES";
+
+                comando = new SqlCommand(strsql, conn);
+                adapter = new SqlDataAdapter(comando);
+                table = new DataTable();
+                adapter.Fill(table);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            conn.Close();
-
-            return paqs;
-
+            return table;
         }
+
+        public DataTable obtenerDatosParcelas(string codalm)
+        {
+            SqlCommand comando;
+            SqlDataAdapter adapter;
+            DataTable table = null;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + " select nave, fila, columna from tfgdb.dbo.PARCELAS_ALMACEN";
+                strsql = strsql + " WHERE COD_ALMACEN = '" + codalm + "'";
+
+                comando = new SqlCommand(strsql, conn);
+                adapter = new SqlDataAdapter(comando);
+                table = new DataTable();
+                adapter.Fill(table);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            return table;
+        }
+        
+
+        
+
+        public bool checkMismaParcela(string paq, string parcela, string codalm)
+        {
+            bool mismaParcela = false;
+
+            SqlCommand comando;
+            SqlDataReader reader;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+
+                strsql = "";
+                strsql = strsql + " select * FROM tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN";
+                strsql = strsql + " WHERE   COD_ALMACEN = '" + codalm + "' AND N_PAQUETE = '" + paq + "' ";
+                strsql = strsql + " ORDER BY FECHA_RECP DESC";
+
+
+                comando = new SqlCommand(strsql, conn);
+                reader = comando.ExecuteReader();
+
+                string parcelaCons;
+
+                if (reader.Read())
+                {
+                    parcelaCons = reader["parcela"].ToString();
+
+                    if (parcelaCons == parcela)
+                    {
+                        mismaParcela = true;
+                    }
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return mismaParcela;
+        }
+
+        public void guardarParcela(string paq, string codalm, string[] parcela)
+        {
+            SqlCommand comando;
+            string strsql = "";
+
+            try
+            {
+                conn.Open();
+
+
+
+                strsql = "";
+                strsql = strsql + " INSERT INTO tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN (N_PAQUETE, COD_ALMACEN, PARCELA, USUARIO_C, FECHA_RECP) ";
+                strsql = strsql + " VALUES ('" + paq + "', '" + codalm + "', '" + string.Join("", parcela) + "', '" + Environment.UserName + "', getdate())";
+
+                comando = new SqlCommand(strsql, conn);
+                comando.ExecuteNonQuery();
+
+
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public DataTable historialPaquete(string codalm, string paq)
+        {
+            string strsql;
+            SqlCommand comando;
+            SqlDataAdapter adapter;
+            DataTable table = null;
+
+
+            try
+            {
+
+                conn.Open();
+
+
+
+                strsql = "";
+                strsql = strsql + " select PARCELA, (SELECT TOP (1) NOMBRE FROM tfgdb.dbo.ALMACENES alm WHERE alm.COD_ALMACEN = pea.COD_ALMACEN) as ALMACEN, FECHA_RECP from tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN pea";
+                strsql = strsql + " WHERE N_PAQUETE = '" + paq + "' ORDER BY FECHA_RECP DESC";
+
+                comando = new SqlCommand(strsql, conn);
+                adapter = new SqlDataAdapter(comando);
+                table = new DataTable();
+                adapter.Fill(table);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return table;
+        }
+
+
 
     }
 

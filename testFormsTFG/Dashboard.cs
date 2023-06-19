@@ -38,5 +38,11 @@ namespace testFormsTFG
             MateriaPrima.MateriaPrima MP = new MateriaPrima.MateriaPrima();
             MP.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PaquetesAlmacen.PaquetesAlmacen PA = new PaquetesAlmacen.PaquetesAlmacen();
+            PA.Show();
+        }
     }
 }
