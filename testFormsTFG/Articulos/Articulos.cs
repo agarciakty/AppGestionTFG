@@ -39,26 +39,7 @@ namespace testFormsTFG.Articulos
         {
 
             recargar();
-            categos = fbd.getCatego();
-
-            foreach(DataRow row in categos.Rows)
-            {
-                this.cbCat.Items.Add(row["CATEGORIA"].ToString());
-                this.comboFiltroCatego.Items.Add(row["CATEGORIA"].ToString());
-
-            }
-            this.cbCat.SelectedIndex = 0;
-
-            provs = fbd.getProvs();
-            foreach (DataRow row in provs.Rows)
-            {
-                this.comboProv.Items.Add(row["NOMBRE"].ToString());
-                this.comboFiltroProv.Items.Add(row["NOMBRE"].ToString());
-            }
-
-            this.comboProv.SelectedIndex = 0;
-            this.comboFiltroProv.SelectedText = "TODOS";
-            this.comboFiltroCatego.SelectedText = "TODOS";
+            
         }
 
         private void recargar()
@@ -79,6 +60,25 @@ namespace testFormsTFG.Articulos
 
             this.comboFiltroCatego.Items.Add("TODOS");
             this.comboFiltroProv.Items.Add("TODOS");
+
+            categos = fbd.getCatego();
+            foreach (DataRow row in categos.Rows)
+            {
+                this.cbCat.Items.Add(row["CATEGORIA"].ToString());
+                this.comboFiltroCatego.Items.Add(row["CATEGORIA"].ToString());
+
+            }
+            this.cbCat.SelectedIndex = 0;
+
+            provs = fbd.getProvs();
+            foreach (DataRow row in provs.Rows)
+            {
+                this.comboProv.Items.Add(row["NOMBRE"].ToString());
+                this.comboFiltroProv.Items.Add(row["NOMBRE"].ToString());
+            }
+            this.comboProv.SelectedIndex = 0;
+            this.comboFiltroProv.SelectedText = "TODOS";
+            this.comboFiltroCatego.SelectedText = "TODOS";
 
 
 
@@ -135,20 +135,27 @@ namespace testFormsTFG.Articulos
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (nuevo)
+            if (this.tbCodigo.Text != "")
             {
-                if (fbd.insertArticulo(this.tbCodigo.Text, this.tbDenomi.Text, categos.Rows[this.cbCat.SelectedIndex][1].ToString(), provs.Rows[this.comboProv.SelectedIndex][1].ToString(), this.nupStock.Value.ToString()) > 0)
-                MessageBox.Show("Se ha insertado correctamente el artículo", "INSERTADO");
-                nuevo = false;
+                if (nuevo)
+                {
+                    if (fbd.insertArticulo(this.tbCodigo.Text, this.tbDenomi.Text, categos.Rows[this.cbCat.SelectedIndex][1].ToString(), provs.Rows[this.comboProv.SelectedIndex][1].ToString(), this.nupStock.Value.ToString()) > 0)
+                        MessageBox.Show("Se ha insertado correctamente el artículo", "INSERTADO");
+                    nuevo = false;
+                }
+                else
+                {
+                    fbd.updateArticulo(this.tbCodigo.Text, this.tbDenomi.Text, categos.Rows[this.cbCat.SelectedIndex][1].ToString(), provs.Rows[this.comboProv.SelectedIndex][1].ToString(), this.nupStock.Value.ToString(), IDmodif);
+                    MessageBox.Show("Se ha actualizado correctamente el artículo con ID " + IDmodif, "ACTUALIZADO");
+                }
+
+                this.panel1.Visible = false;
+                recargar();
             }
             else
             {
-                fbd.updateArticulo(this.tbCodigo.Text, this.tbDenomi.Text, categos.Rows[this.cbCat.SelectedIndex][1].ToString(), provs.Rows[this.comboProv.SelectedIndex][1].ToString(), this.nupStock.Value.ToString(), IDmodif);
-                MessageBox.Show("Se ha actualizado correctamente el artículo con ID " + IDmodif, "ACTUALIZADO");
+                MessageBox.Show("El campo CÓDIGO no puede estar vacío.", "ERROR");
             }
-
-            this.panel1.Visible=false;
-            recargar();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

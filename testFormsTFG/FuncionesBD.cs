@@ -433,8 +433,6 @@ namespace AppGestionTFG
 
         public DataTable getProvs()
         {
-            DataTable dt = new DataTable();
-
             DataTable provs = new DataTable();
 
             SqlConnection conn = new SqlConnection(connString);
@@ -459,6 +457,150 @@ namespace AppGestionTFG
 
         }
 
+        //MP PAQUETES
+        public DataTable getPaquetes(DateTime fechadesde, DateTime fechahasta)
+        {
+            DataTable paqs = new DataTable();
+
+            SqlConnection conn = new SqlConnection(connString);
+            SqlDataAdapter adapter1 = new SqlDataAdapter();
+
+            conn.Open();
+
+            string strsql = "select distinct pea.N_PAQUETE as PAQUETE, ";
+            strsql += "(select top (1) PARCELA from tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN where N_PAQUETE = pea.N_PAQUETE order by FECHA_RECP desc) as PARCELA, ";
+            strsql += "(select top (1) FECHA_RECP FROM tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN where N_PAQUETE = pea.N_PAQUETE order by FECHA_RECP ASC) as [FECHA DE ENTRADA] ";
+            strsql += "from tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN pea where '" + fechadesde.Date.ToString("dd-MM-yyyy") + "' <= FECHA_RECP and  FECHA_RECP <= '" + fechahasta.Date.ToString("dd-MM-yyyy") + "'";
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            using (conn)
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(
+                    strsql, conn);
+                adapter.Fill(paqs);
+            }
+
+            conn.Close();
+
+            return paqs;
+        }
+
+        public DataTable getMPPaquetes(string paquete)
+        {
+            DataTable paqs = new DataTable();
+
+            SqlConnection conn = new SqlConnection(connString);
+            SqlDataAdapter adapter1 = new SqlDataAdapter();
+
+            conn.Open();
+
+            string strsql = "select PAQUETE, ARTICULO, CANTIDAD as CTD, CMP.CATEGORIA, DENOMINACION from tfgdb.dbo.PAQUETES_MP pmp ";
+            strsql += "left join tfgdb.dbo.ARTICULOS_MP amp on amp.CODIGO = pmp.ARTICULO ";
+            strsql += "left join tfgdb.dbo.CATEGORIAS_MP cmp on cmp.ID_CATEGORIA = amp.CATEGORIA where PAQUETE = " + paquete;
+
+
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            using (conn)
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(
+                    strsql, conn);
+                adapter.Fill(paqs);
+            }
+
+            conn.Close();
+
+            return paqs;
+        }
+
+        public string getEstadoPaquete(string paquete)
+        {
+            DataTable paqs = new DataTable();
+
+            SqlConnection conn = new SqlConnection(connString);
+            SqlDataAdapter adapter1 = new SqlDataAdapter();
+
+            conn.Open();
+
+            string strsql = "select TOP (1) case when CONFIRMADO IS null then 'PENDIENTE' ELSE CONFIRMADO END AS ESTADO from tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN where N_PAQUETE =  " + paquete + " order by FECHA_RECP desc";
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            using (conn)
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(
+                    strsql, conn);
+                adapter.Fill(paqs);
+            }
+
+            conn.Close();
+
+            return paqs.Rows[0][0].ToString();
+        }
+
+        public DataTable getInfoMP(string codigo)
+        {
+            DataTable info = new DataTable();
+
+            SqlConnection conn = new SqlConnection(connString);
+            SqlDataAdapter adapter1 = new SqlDataAdapter();
+
+            conn.Open();
+
+            string strsql = "select codigo, DENOMINACION, cat.CATEGORIA, pro.NOMBRE from tfgdb.dbo.ARTICULOS_MP mp left join tfgdb.dbo.CATEGORIAS_MP cat on mp.CATEGORIA = cat.ID_CATEGORIA left join tfgdb.dbo.PROVEEDORES pro on pro.ID = mp.PROVEEDOR where CODIGO = '" + codigo + "'";
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            using (conn)
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(
+                    strsql, conn);
+                adapter.Fill(info);
+            }
+
+            conn.Close();
+
+            return info;
+        }
+
+        public int añadirMPPaquete(string paquete, string codigo, int cantidad)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            int ins;
+            conn.Open();
+
+            string strsql = "INSERT INTO tfgdb.dbo.PAQUETES_MP (PAQUETE, ARTICULO, CANTIDAD, FECHA_C) VALUES ('" + paquete + "', '" + codigo + "', '" + cantidad + "', GETDATE()) ";
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            using (conn)
+            {
+                ins = cmd.ExecuteNonQuery();
+            }
+
+            conn.Close();
+
+            return ins;
+
+        }
+
+        public void confirmarPaqueteMP(string paquete)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            conn.Open();
+
+            string strsql = "UPDATE tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN SET CONFIRMADO = 'CONFIRMADO' ";
+            strsql += "WHERE N_PAQUETE = '" + paquete + "' AND PARCELA = (SELECT TOP (1) PARCELA FROM tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN WHERE N_PAQUETE = '" + paquete + "' ORDER BY FECHA_RECP DESC)";
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            using (conn)
+            {
+                cmd.ExecuteNonQuery();
+            }
+
+            conn.Close();
+        }
 
         //PAQUETES ALMACÉN
         public DataTable obtenerAlmacenes()

@@ -47,7 +47,7 @@ namespace testFormsTFG.PaquetesAlmacen
             }
 
             updateTextoParcela();
-            this.usuario.Text = Environment.UserName;
+            this.usuario.Text = "tablet.almacen"; //Environment.UserName;
 
             if (comboAlmacen.Items.Count != 0)
             {
@@ -90,6 +90,7 @@ namespace testFormsTFG.PaquetesAlmacen
                     comboNave.Items.Add(row["NAVE"].ToString());
                 }
             }
+            
 
             /*if (Convert.ToInt32(datosparcelas.Rows[0][3]) > 0)
             {
