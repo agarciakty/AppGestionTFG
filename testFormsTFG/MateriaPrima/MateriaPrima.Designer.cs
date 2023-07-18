@@ -54,7 +54,7 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.panelMP = new System.Windows.Forms.Panel();
             this.labelProv = new System.Windows.Forms.Label();
             this.labelCat = new System.Windows.Forms.Label();
@@ -334,6 +334,7 @@
             this.btnEditar.TabIndex = 31;
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Visible = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEliminar
             // 
@@ -347,6 +348,7 @@
             this.btnEliminar.TabIndex = 30;
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Visible = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnNuevo
             // 
@@ -362,17 +364,18 @@
             this.btnNuevo.Visible = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // button2
+            // btnImportar
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(893, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(575, 93);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "IMPORTAR DESDE ARCHIVO";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnImportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportar.Location = new System.Drawing.Point(893, 12);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(575, 93);
+            this.btnImportar.TabIndex = 35;
+            this.btnImportar.Text = "IMPORTAR DESDE ARCHIVO";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // panelMP
             // 
@@ -558,7 +561,7 @@
             this.ClientSize = new System.Drawing.Size(1484, 1211);
             this.Controls.Add(this.dgvPaquetes);
             this.Controls.Add(this.panelMP);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
@@ -626,7 +629,7 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnImportar;
         private System.Windows.Forms.Panel panelMP;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;

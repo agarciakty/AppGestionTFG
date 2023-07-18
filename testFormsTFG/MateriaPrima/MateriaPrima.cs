@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using testFormsTFG.Articulos;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace testFormsTFG.MateriaPrima
@@ -16,6 +18,8 @@ namespace testFormsTFG.MateriaPrima
     {
         DataTable tablaPaqs = new DataTable();
         FuncionesBD fbd = new FuncionesBD();
+
+        bool editar = false;
         public MateriaPrima()
         {
             InitializeComponent();
@@ -59,6 +63,7 @@ namespace testFormsTFG.MateriaPrima
 
         private void selectPaquete(string paquete)
         {
+            this.panelMP.Visible = false;
             this.dgvMP.DataSource = fbd.getMPPaquetes(paquete);
             this.labelPaq.Text = paquete;
             this.labelEstado.Text = fbd.getEstadoPaquete(paquete);
@@ -102,6 +107,8 @@ namespace testFormsTFG.MateriaPrima
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
+            editar = false;
+
             this.panelMP.Visible = true;
             this.cbCodigos.ResetText();
 
@@ -114,7 +121,14 @@ namespace testFormsTFG.MateriaPrima
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            fbd.añadirMPPaquete(this.labelPaq.Text, this.cbCodigos.SelectedItem.ToString(), (int)this.nupStock.Value);
+            if (!editar)
+            {
+                fbd.añadirMPPaquete(this.labelPaq.Text, this.cbCodigos.SelectedItem.ToString(), (int)this.nupStock.Value);
+            }
+            else
+            {
+                fbd.editarMPPaquete(this.labelPaq.Text, this.cbCodigos.SelectedItem.ToString(), (int)this.nupStock.Value);
+            }
             selectPaquete(this.labelPaq.Text);
         }
 
@@ -137,6 +151,75 @@ namespace testFormsTFG.MateriaPrima
             fbd.confirmarPaqueteMP(this.labelPaq.Text);
             selectPaquete(this.labelPaq.Text);
             MessageBox.Show("Se ha confirmado correctamente el contenido del paquete con ID " + this.labelPaq.Text, "PAQUETE CONFIRMADO");
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (this.dgvPaquetes.SelectedRows.Count > 0)
+            {
+
+                DialogResult result = MessageBox.Show("Se van a eliminar " + this.dgvMP.SelectedRows.Count.ToString() + " artículo(s) del paquete " + this.labelPaq.Text + ", ¿Continuar?", "ATENCIÓN", MessageBoxButtons.YesNo);
+
+
+                if (result == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow row in this.dgvMP.SelectedRows)
+                    {
+                        fbd.eliminarMPPaquete(row.Cells["ARTICULO"].Value.ToString(), this.labelPaq.Text);
+                    }
+                }
+
+                //MessageBox.Show("Seleccione un ARTÍCULO", "ATENCIÓN");
+                selectPaquete(this.labelPaq.Text);
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (this.dgvMP.SelectedRows.Count == 1)
+            {
+                editar = true;
+
+                this.panelMP.Visible = true;
+
+
+                this.cbCodigos.SelectedIndex = cbCodigos.FindStringExact(this.dgvMP.SelectedRows[0].Cells[1].Value.ToString());
+                this.nupStock.Value = Convert.ToUInt32(this.dgvMP.SelectedRows[0].Cells[2].Value.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un sólo artículo", "ATENCIÓN");
+            }
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+
+                    //Read the contents of the file into a stream
+                    var fileStream = openFileDialog.OpenFile();
+
+                    using (StreamReader reader = new StreamReader(fileStream))
+                    {
+                        fileContent = reader.ReadToEnd();
+                    }
+                }
+            }
+
+            MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
         }
     }
 }
