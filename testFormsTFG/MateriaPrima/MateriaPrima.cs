@@ -1,4 +1,5 @@
 ﻿using AppGestionTFG;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -200,7 +201,7 @@ namespace testFormsTFG.MateriaPrima
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                openFileDialog.Filter = "csv files (*.csv)|*.csv";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -210,16 +211,71 @@ namespace testFormsTFG.MateriaPrima
                     filePath = openFileDialog.FileName;
 
                     //Read the contents of the file into a stream
-                    var fileStream = openFileDialog.OpenFile();
+                    //var fileStream = openFileDialog.OpenFile();
 
-                    using (StreamReader reader = new StreamReader(fileStream))
+                    //using (StreamReader reader = new StreamReader(fileStream))
+                    //{
+                    //    fileContent = reader.ReadToEnd();
+                    //}
+
+                    string[] filasDatos = File.ReadAllLines(filePath);
+
+                    DataTable import = new DataTable();
+                    string[] valores = null;
+                    DataRow fila = import.NewRow();
+
+                    if (filasDatos.Length > 0)
                     {
-                        fileContent = reader.ReadToEnd();
+                        //paquete;articulo;cantidad
+
+                        //Esto procesa el header
+                        /*
+                        foreach (string columnName in filasDatos[0].Split(';'))
+                        {
+                            import.Columns.Add(columnName);
+                        }
+                        */
+
+                        int columna = 0;
+
+                        string paq = "";
+                        string articulo = "";
+                        string cant = "";
+
+                        for (int i = 0; i < filasDatos.Length; i++)
+                        {
+                            columna = 0;
+                            foreach (string valor in filasDatos[i].Split(';'))
+                            {
+                                switch (columna)
+                                {
+                                    case 0:
+                                        paq = valor;
+                                        break;
+                                    case 1:
+                                        articulo = valor;
+                                        break;
+                                    default:
+                                        cant = valor;
+                                        break;
+                                }
+                                columna++;
+                            }
+                            fbd.añadirMPPaquete(paq, articulo, Convert.ToInt32(cant));
+                        }
+
+                    }
+
+                    MessageBox.Show("Importación completa");
+
+                    if (this.labelPaq.Text != "-")
+                    {
+                        selectPaquete(this.labelPaq.Text);
                     }
                 }
             }
 
-            MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
+            
         }
     }
 }

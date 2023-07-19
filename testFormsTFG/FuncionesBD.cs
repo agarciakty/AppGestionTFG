@@ -590,7 +590,7 @@ namespace AppGestionTFG
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
 
-            string strsql = "INSERT INTO tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN (PARCELA, N_PAQUETE, USUARIO_C, FECHA_RECP, CONFIRMADO, COD_ALMACEN) SELECT TOP (1) PARCELA, N_PAQUETE, '" + Environment.UserName + "' as USUARIO_C, GETDATE() AS FECHA_RECP, 'CONFIRMADO' , COD_ALMACEN FROM tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN WHERE N_PAQUETE = '0002' ORDER BY FECHA_RECP DESC";
+            string strsql = "INSERT INTO tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN (PARCELA, N_PAQUETE, USUARIO_C, FECHA_RECP, CONFIRMADO, COD_ALMACEN) SELECT TOP (1) PARCELA, N_PAQUETE, '" + Environment.UserName + "' as USUARIO_C, GETDATE() AS FECHA_RECP, 'CONFIRMADO' , COD_ALMACEN FROM tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN WHERE N_PAQUETE = '" + paquete + "' ORDER BY FECHA_RECP DESC";
             SqlCommand cmd = new SqlCommand(strsql, conn);
 
             using (conn)
