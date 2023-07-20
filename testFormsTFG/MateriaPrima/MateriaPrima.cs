@@ -198,6 +198,8 @@ namespace testFormsTFG.MateriaPrima
             var fileContent = string.Empty;
             var filePath = string.Empty;
 
+            List<string> fallos = new List<string>();
+
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
@@ -261,12 +263,27 @@ namespace testFormsTFG.MateriaPrima
                                 }
                                 columna++;
                             }
-                            fbd.añadirMPPaquete(paq, articulo, Convert.ToInt32(cant));
+                            if (fbd.añadirMPPaquete(paq, articulo, Convert.ToInt32(cant)) == -1)
+                            {
+                                fallos.Add("\tPAQUETE " + paq + " - ARTÍCULO " + articulo + "\n");
+                            }
                         }
 
                     }
 
-                    MessageBox.Show("Importación completa");
+                    string mensaje = "Importación completa";
+
+                    if (fallos.Count != 0)
+                    {
+                        mensaje = "Importación finalizada con artículos duplicados:\n\n";
+                        foreach (string linea in fallos)
+                        {
+                            mensaje += linea;
+                        }
+                    }
+
+                    MessageBox.Show(mensaje);
+
 
                     if (this.labelPaq.Text != "-")
                     {

@@ -200,9 +200,9 @@
             this.labelPaq.ForeColor = System.Drawing.Color.Blue;
             this.labelPaq.Location = new System.Drawing.Point(1293, 295);
             this.labelPaq.Name = "labelPaq";
-            this.labelPaq.Size = new System.Drawing.Size(108, 46);
+            this.labelPaq.Size = new System.Drawing.Size(33, 46);
             this.labelPaq.TabIndex = 20;
-            this.labelPaq.Text = "0000";
+            this.labelPaq.Text = "-";
             // 
             // btnContenido
             // 
@@ -367,13 +367,13 @@
             // btnImportar
             // 
             this.btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnImportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnImportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImportar.Location = new System.Drawing.Point(893, 12);
+            this.btnImportar.Location = new System.Drawing.Point(688, 1106);
             this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(575, 93);
+            this.btnImportar.Size = new System.Drawing.Size(310, 93);
             this.btnImportar.TabIndex = 35;
-            this.btnImportar.Text = "IMPORTAR DESDE ARCHIVO";
+            this.btnImportar.Text = "IMPORTAR DESDE CSV";
             this.btnImportar.UseVisualStyleBackColor = false;
             this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
@@ -558,6 +558,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1484, 1211);
             this.Controls.Add(this.dgvPaquetes);
             this.Controls.Add(this.panelMP);

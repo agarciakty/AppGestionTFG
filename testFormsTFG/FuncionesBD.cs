@@ -569,19 +569,30 @@ namespace AppGestionTFG
         {
             SqlConnection conn = new SqlConnection(connString);
             int ins;
-            conn.Open();
 
-            string strsql = "INSERT INTO tfgdb.dbo.PAQUETES_MP (PAQUETE, ARTICULO, CANTIDAD, FECHA_C) VALUES ('" + paquete + "', '" + codigo + "', '" + cantidad + "', GETDATE()) ";
-            SqlCommand cmd = new SqlCommand(strsql, conn);
-
-            using (conn)
+            try
             {
-                ins = cmd.ExecuteNonQuery();
+                conn.Open();
+
+                string strsql = "INSERT INTO tfgdb.dbo.PAQUETES_MP (PAQUETE, ARTICULO, CANTIDAD, FECHA_C) VALUES ('" + paquete + "', '" + codigo + "', '" + cantidad + "', GETDATE()) ";
+                SqlCommand cmd = new SqlCommand(strsql, conn);
+
+                using (conn)
+                {
+                    ins = cmd.ExecuteNonQuery();
+                }
+
+                conn.Close();
+
+                return ins;
             }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
 
-            conn.Close();
-
-            return ins;
+                return -1;
+            }
 
         }
 
