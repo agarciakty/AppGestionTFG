@@ -294,5 +294,105 @@ namespace testFormsTFG.MateriaPrima
 
             
         }
+
+        private void btnImportar2_Click(object sender, EventArgs e)
+        {
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            List<string> fallos = new List<string>();
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "csv files (*.csv)|*.csv";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+
+                    //Read the contents of the file into a stream
+                    //var fileStream = openFileDialog.OpenFile();
+
+                    //using (StreamReader reader = new StreamReader(fileStream))
+                    //{
+                    //    fileContent = reader.ReadToEnd();
+                    //}
+
+                    string[] filasDatos = File.ReadAllLines(filePath);
+
+                    DataTable import = new DataTable();
+                    string[] valores = null;
+                    DataRow fila = import.NewRow();
+
+                    if (filasDatos.Length > 0)
+                    {
+                        //paquete;articulo;cantidad
+
+                        //Esto procesa el header
+                        /*
+                        foreach (string columnName in filasDatos[0].Split(';'))
+                        {
+                            import.Columns.Add(columnName);
+                        }
+                        */
+
+                        int columna = 0;
+
+                        string paq = "";
+                        string articulo = "";
+                        string cant = "";
+
+                        for (int i = 0; i < filasDatos.Length; i++)
+                        {
+                            columna = 0;
+                            foreach (string valor in filasDatos[i].Split(';'))
+                            {
+                                switch (columna)
+                                {
+                                    case 0:
+                                        paq = valor;
+                                        break;
+                                    case 1:
+                                        articulo = valor;
+                                        break;
+                                    default:
+                                        cant = valor;
+                                        break;
+                                }
+                                columna++;
+                            }
+                            if (fbd.añadirMPPaquete(paq, articulo, Convert.ToInt32(cant)) == -1)
+                            {
+                                fallos.Add("\tPAQUETE " + paq + " - ARTÍCULO " + articulo + "\n");
+                            }
+                        }
+
+                    }
+
+                    string mensaje = "Importación completa";
+
+                    if (fallos.Count != 0)
+                    {
+                        mensaje = "Importación finalizada con artículos duplicados:\n\n";
+                        foreach (string linea in fallos)
+                        {
+                            mensaje += linea;
+                        }
+                    }
+
+                    MessageBox.Show(mensaje);
+
+
+                    if (this.labelPaq.Text != "-")
+                    {
+                        selectPaquete(this.labelPaq.Text);
+                    }
+                }
+            }
+        }
     }
 }

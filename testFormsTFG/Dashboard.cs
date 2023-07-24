@@ -44,5 +44,11 @@ namespace testFormsTFG
             PaquetesAlmacen.PaquetesAlmacen PA = new PaquetesAlmacen.PaquetesAlmacen();
             PA.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            GestionProyectos.GestionProyectos GP = new GestionProyectos.GestionProyectos();
+            GP.Show();
+        }
     }
 }

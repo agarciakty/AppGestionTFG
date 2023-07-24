@@ -34,6 +34,7 @@
             this.btnCPersonal = new System.Windows.Forms.Button();
             this.btnMP = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -58,6 +59,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnCPersonal, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnMP, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.button2, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.button3, 1, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(18, 20);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -113,6 +115,17 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(206, 138);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(193, 129);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "GESTIÓN PROYECTOS";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,5 +150,6 @@
         private System.Windows.Forms.Button btnMP;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
