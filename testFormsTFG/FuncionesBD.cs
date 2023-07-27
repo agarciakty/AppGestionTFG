@@ -838,6 +838,77 @@ namespace AppGestionTFG
             return table;
         }
 
+        //GESTIÓN PROYECTOS
+
+        public DataTable obtenerProys()
+        {
+            SqlCommand comando;
+            SqlDataAdapter adapter;
+            DataTable table = null;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + " SELECT *  FROM tfgdb.dbo.PROYECTOS WHERE ESTADO <> 'FINALIZADO' ORDER BY ID_PROY";
+
+                comando = new SqlCommand(strsql, conn);
+                adapter = new SqlDataAdapter(comando);
+                table = new DataTable();
+                adapter.Fill(table);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            return table;
+        }
+
+        public DataTable obtenerEstructs(string proy)
+        {
+            SqlCommand comando;
+            SqlDataAdapter adapter;
+            DataTable table = null;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + " SELECT *  FROM tfgdb.dbo.PIEZAS WHERE ID_PROYECTO = '" + proy + "' ORDER BY CODIGO_PADRE, CODIGO";
+
+                comando = new SqlCommand(strsql, conn);
+                adapter = new SqlDataAdapter(comando);
+                table = new DataTable();
+                adapter.Fill(table);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            return table;
+        }
 
 
     }
