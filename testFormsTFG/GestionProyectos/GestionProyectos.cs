@@ -18,6 +18,7 @@ using System.Threading;
 using Google.Apis.Calendar.v3.Data;
 using AppGestionTFG;
 using System.Web.UI.WebControls.WebParts;
+using DocumentFormat.OpenXml.EMMA;
 
 namespace testFormsTFG.GestionProyectos
 {
@@ -232,6 +233,26 @@ namespace testFormsTFG.GestionProyectos
 
                 poblarNodo(nodoHijo, dr["CODIGO"].ToString(), !altern);
             }
+        }
+
+        private void treeViewProys_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void treeViewProys_DoubleClick(object sender, EventArgs e)
+        {
+            this.panel2.Visible = true;
+
+            this.labelNomPieza.Text = this.treeViewProys.SelectedNode.Name.ToString();
+            this.labelNomPieza.Text = this.treeViewProys.SelectedNode.Text.ToString();
+
+            this.labelNumCompo.Text = "(" + this.treeViewProys.SelectedNode.Nodes.Count.ToString() + ")";
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.panel2.Visible = false;
         }
     }
 }

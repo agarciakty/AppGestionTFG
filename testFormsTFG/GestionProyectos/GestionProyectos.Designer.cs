@@ -51,7 +51,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelNomPieza = new System.Windows.Forms.Label();
+            this.labelDescPieza = new System.Windows.Forms.Label();
+            this.labelNumCompo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -99,6 +109,8 @@
             this.treeViewProys.Name = "treeViewProys";
             this.treeViewProys.Size = new System.Drawing.Size(1214, 330);
             this.treeViewProys.TabIndex = 3;
+            this.treeViewProys.DoubleClick += new System.EventHandler(this.treeViewProys_DoubleClick);
+            this.treeViewProys.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeViewProys_MouseClick);
             // 
             // label9
             // 
@@ -271,14 +283,104 @@
             this.label2.TabIndex = 48;
             this.label2.Text = "CLIENTE";
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.labelNumCompo);
+            this.panel2.Controls.Add(this.labelDescPieza);
+            this.panel2.Controls.Add(this.labelNomPieza);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.btnCerrar);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Location = new System.Drawing.Point(289, 156);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(659, 396);
+            this.panel2.TabIndex = 50;
+            this.panel2.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(13, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(315, 39);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "DATOS DE PIEZA";
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.Location = new System.Drawing.Point(588, 9);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(58, 50);
+            this.btnCerrar.TabIndex = 50;
+            this.btnCerrar.Text = "X";
+            this.btnCerrar.UseVisualStyleBackColor = false;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(13, 230);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(633, 150);
+            this.dataGridView1.TabIndex = 51;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(8, 202);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(181, 25);
+            this.label6.TabIndex = 52;
+            this.label6.Text = "COMPONENTES";
+            // 
+            // labelNomPieza
+            // 
+            this.labelNomPieza.AutoSize = true;
+            this.labelNomPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNomPieza.ForeColor = System.Drawing.Color.Blue;
+            this.labelNomPieza.Location = new System.Drawing.Point(15, 67);
+            this.labelNomPieza.Name = "labelNomPieza";
+            this.labelNomPieza.Size = new System.Drawing.Size(133, 31);
+            this.labelNomPieza.TabIndex = 53;
+            this.labelNomPieza.Text = "NOMBRE";
+            // 
+            // labelDescPieza
+            // 
+            this.labelDescPieza.AutoSize = true;
+            this.labelDescPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescPieza.ForeColor = System.Drawing.Color.Blue;
+            this.labelDescPieza.Location = new System.Drawing.Point(15, 120);
+            this.labelDescPieza.Name = "labelDescPieza";
+            this.labelDescPieza.Size = new System.Drawing.Size(133, 31);
+            this.labelDescPieza.TabIndex = 54;
+            this.labelDescPieza.Text = "NOMBRE";
+            // 
+            // labelNumCompo
+            // 
+            this.labelNumCompo.AutoSize = true;
+            this.labelNumCompo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumCompo.ForeColor = System.Drawing.Color.Green;
+            this.labelNumCompo.Location = new System.Drawing.Point(195, 196);
+            this.labelNumCompo.Name = "labelNumCompo";
+            this.labelNumCompo.Size = new System.Drawing.Size(55, 31);
+            this.labelNumCompo.TabIndex = 55;
+            this.labelNumCompo.Text = "( - )";
+            // 
             // GestionProyectos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1236, 696);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label1);
@@ -296,6 +398,9 @@
             this.Load += new System.EventHandler(this.GestionProyectos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,5 +429,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelNumCompo;
+        private System.Windows.Forms.Label labelDescPieza;
+        private System.Windows.Forms.Label labelNomPieza;
     }
 }
