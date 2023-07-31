@@ -32,6 +32,8 @@ namespace testFormsTFG.GestionProyectos
         DataTable datosPiezas = new DataTable();
         DataTable datosProy = new DataTable();
 
+        string id_proy = "0";
+
         public GestionProyectos()
         {
             InitializeComponent();
@@ -188,7 +190,7 @@ namespace testFormsTFG.GestionProyectos
             this.labelNom.Text = datosProy.Rows[this.cbProys.SelectedIndex][1].ToString();
             this.labelDesc.Text = datosProy.Rows[this.cbProys.SelectedIndex][2].ToString();
             this.labelCliente.Text = datosProy.Rows[this.cbProys.SelectedIndex][5].ToString();
-            this.labelFIni.Text = datosProy.Rows[this.cbProys.SelectedIndex][3].ToString();
+            this.labelFIni.Text = datosProy.Rows[this.cbProys.SelectedIndex][3].ToString().Substring(0, datosProy.Rows[this.cbProys.SelectedIndex][3].ToString().IndexOf(' '));
             poblarTreeView();
         }
 
@@ -196,7 +198,7 @@ namespace testFormsTFG.GestionProyectos
         {
             Cursor = Cursors.WaitCursor;
             this.treeViewProys.Nodes.Clear();
-            string id_proy = this.cbProys.SelectedItem.ToString().Substring(0, this.cbProys.SelectedItem.ToString().IndexOf('#'));
+            id_proy = this.cbProys.SelectedItem.ToString().Substring(0, this.cbProys.SelectedItem.ToString().IndexOf('#'));
             this.datosPiezas = fbd.obtenerEstructs(id_proy);
 
             poblarNodo(null, "0", false);
@@ -245,14 +247,39 @@ namespace testFormsTFG.GestionProyectos
             this.panel2.Visible = true;
 
             this.labelNomPieza.Text = this.treeViewProys.SelectedNode.Name.ToString();
-            this.labelNomPieza.Text = this.treeViewProys.SelectedNode.Text.ToString();
+            this.labelDescPieza.Text = this.treeViewProys.SelectedNode.Text.ToString();
 
-            this.labelNumCompo.Text = "(" + this.treeViewProys.SelectedNode.Nodes.Count.ToString() + ")";
+            if (this.treeViewProys.SelectedNode.Nodes.Count > 0)
+            {
+                this.labelNumCompo.Text = "(" + this.treeViewProys.SelectedNode.Nodes.Count.ToString() + ")";
+                this.panel2.Size = new Size(659, 252);
+                this.dgvCompo.Visible = false;
+            }
+            else
+            {
+                this.labelNumCompo.Text = "(" + this.treeViewProys.SelectedNode.Nodes.Count.ToString() + ", ARTÍCULOS MATERIA PRIMA)";
+                this.dgvCompo.Visible = true;
+                this.panel2.Size = new Size(659, 396);
+                this.dgvCompo.DataSource = fbd.obtenerComponentesMP(this.treeViewProys.SelectedNode.Name.ToString(), id_proy);
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.panel2.Visible = false;
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Se va a eliminar el proyecto actual, ¿Continuar?",
+                      "ATENCIÓN", MessageBoxButtons.YesNo);
+            switch (dr)
+            {
+                case DialogResult.Yes:
+                    break;
+                case DialogResult.No:
+                    break;
+            }
         }
     }
 }

@@ -910,6 +910,69 @@ namespace AppGestionTFG
             return table;
         }
 
+        public DataTable obtenerComponentesMP(string pieza, string proy)
+        {
+            SqlCommand comando;
+            SqlDataAdapter adapter;
+            DataTable table = null;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + " select MP_BASE as [ARTÍCULO MP BASE], DNI_EMP_ASIGNADO AS [EMPLEADO ASIGNADO], NOMBRE_OPERACION AS [OPERACIÓN] from tfgdb.dbo.OPERACIONES op left join tfgdb.dbo.TIPOS_OPER tp on tp.ID_OPERACION = op.OPERACION where PIEZA = '" + pieza + "' and PROYECTO = '" + proy + "'";
+
+                comando = new SqlCommand(strsql, conn);
+                adapter = new SqlDataAdapter(comando);
+                table = new DataTable();
+                adapter.Fill(table);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            return table;
+        }
+
+        public void nuevaOperacion(string pieza, string articulo, string proy, string dni_emp, string op)
+        {
+            SqlCommand comando;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + "insert into OPERACIONES (PROYECTO, PIEZA, OPERACION, DNI_EMP_ASIGNADO, FECHA_CRE, MP_BASE) values ('" + proy + "', '" + pieza + "', '" + op + "','" + dni_emp + "',GETDATE(), '" + articulo + "')";
+
+                comando = new SqlCommand(strsql, conn);
+                comando.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
     }
 
