@@ -50,7 +50,7 @@ namespace testFormsTFG.GestionProyectos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GoogleUser User = new GoogleUser("angelgarcia1311", "angelgarcia1311@gmail.com", "Googleaccount113@", "clientId", "client secret");
+            GoogleUser User = new GoogleUser("angelgarcia1311", "angelgarcia1311@gmail.com", "-@", "clientId", "client secret");
             string accessToken;
             string refreshToken;
 
