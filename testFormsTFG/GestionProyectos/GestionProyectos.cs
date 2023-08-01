@@ -34,6 +34,10 @@ namespace testFormsTFG.GestionProyectos
 
         string id_proy = "0";
 
+        DataTable operarios = new DataTable();
+        DataTable operaciones = new DataTable();
+        DataTable MParticulos = new DataTable();
+
         public GestionProyectos()
         {
             InitializeComponent();
@@ -257,10 +261,11 @@ namespace testFormsTFG.GestionProyectos
             }
             else
             {
-                this.labelNumCompo.Text = "(" + this.treeViewProys.SelectedNode.Nodes.Count.ToString() + ", ARTÍCULOS MATERIA PRIMA)";
+                
                 this.dgvCompo.Visible = true;
-                this.panel2.Size = new Size(659, 396);
+                this.panel2.Size = new Size(659, 463);
                 this.dgvCompo.DataSource = fbd.obtenerComponentesMP(this.treeViewProys.SelectedNode.Name.ToString(), id_proy);
+                this.labelNumCompo.Text = "(" + this.dgvCompo.Rows.Count + ", ARTÍCULOS MATERIA PRIMA)";
             }
         }
 
@@ -280,6 +285,79 @@ namespace testFormsTFG.GestionProyectos
                 case DialogResult.No:
                     break;
             }
+        }
+
+        private void btnEliminarOp_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Se van a eliminar " + dgvCompo.SelectedRows.Count + " operaciones en la pieza " + labelNomPieza.Text + ", ¿Continuar?",
+                      "ATENCIÓN", MessageBoxButtons.YesNo);
+            switch (dr)
+            {
+                case DialogResult.Yes:
+                    foreach (DataGridViewRow row in dgvCompo.SelectedRows)
+                    {
+                        fbd.eliminarOperacion(labelNomPieza.Text, row.Cells[0].Value.ToString(), id_proy, row.Cells[2].Value.ToString());
+                    }
+
+                    this.dgvCompo.DataSource = fbd.obtenerComponentesMP(this.treeViewProys.SelectedNode.Name.ToString(), id_proy);
+                    MessageBox.Show("Operaciones eliminadas", "BORRADO COMPLETO");
+                    break;
+                case DialogResult.No:
+                    break;
+            }
+
+            
+        }
+
+        private void btnAñadirOp_Click(object sender, EventArgs e)
+        {
+            this.panelOps.Visible = true;
+            this.panel2.Visible = false;
+            this.cbMPOp.Items.Clear();
+            this.cbOperaciones.Items.Clear();
+            this.cbOperario.Items.Clear();
+
+            operaciones = fbd.obtenerOperaciones();
+            operarios = fbd.obtenerPersonal();
+            MParticulos = fbd.getArticulos();
+
+            foreach (DataRow row in operaciones.Rows)
+            {
+                this.cbOperaciones.Items.Add(row[1].ToString());
+            }
+
+            this.cbOperaciones.SelectedIndex = 0;
+
+            foreach (DataRow row2 in MParticulos.Rows)
+            {
+                this.cbMPOp.Items.Add(row2[1].ToString());
+            }
+            this.cbMPOp.SelectedIndex = 0;
+
+            foreach(DataRow row3 in operarios.Rows)
+            {
+                this.cbOperario.Items.Add(row3[1].ToString() + "( " + row3[2].ToString() + " )");
+            }
+            this.cbOperario.SelectedIndex = 0;
+
+
+        }
+
+        private void btnCerrarPanelOps_Click(object sender, EventArgs e)
+        {
+            this.panelOps.Visible = false;
+            this.panel2.Visible = true;
+        }
+
+        private void cbMPOp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.labelDenomiOp.Text = this.MParticulos.Rows[this.cbMPOp.SelectedIndex][2].ToString();
+            this.labelCodigoOp.Text = this.cbMPOp.SelectedText.ToString();
+        }
+
+        private void btnAceptarOp_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

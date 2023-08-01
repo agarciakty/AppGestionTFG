@@ -910,6 +910,41 @@ namespace AppGestionTFG
             return table;
         }
 
+        public DataTable obtenerOperaciones()
+        {
+            SqlCommand comando;
+            SqlDataAdapter adapter;
+            DataTable table = null;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + " select DISTINCT * from tfgdb.dbo.TIPOS_OPER";
+
+                comando = new SqlCommand(strsql, conn);
+                adapter = new SqlDataAdapter(comando);
+                table = new DataTable();
+                adapter.Fill(table);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            return table;
+        }
+
         public DataTable obtenerComponentesMP(string pieza, string proy)
         {
             SqlCommand comando;
@@ -956,7 +991,7 @@ namespace AppGestionTFG
                 conn.Open();
 
                 strsql = "";
-                strsql = strsql + "insert into OPERACIONES (PROYECTO, PIEZA, OPERACION, DNI_EMP_ASIGNADO, FECHA_CRE, MP_BASE) values ('" + proy + "', '" + pieza + "', '" + op + "','" + dni_emp + "',GETDATE(), '" + articulo + "')";
+                strsql = strsql + "insert into tfgdb.dbo.OPERACIONES (PROYECTO, PIEZA, OPERACION, DNI_EMP_ASIGNADO, FECHA_CRE, MP_BASE) values ('" + proy + "', '" + pieza + "', '" + op + "','" + dni_emp + "',GETDATE(), '" + articulo + "')";
 
                 comando = new SqlCommand(strsql, conn);
                 comando.ExecuteNonQuery();
@@ -972,6 +1007,35 @@ namespace AppGestionTFG
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void eliminarOperacion(string pieza, string articulo, string proy, string op)
+        {
+            SqlCommand comando;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + "delete from tfgdb.dbo.OPERACIONES where PROYECTO = '" + proy + "' and PIEZA = '" + pieza + "' AND MP_BASE = '" + articulo + "' AND OPERACION = (SELECT TOP (1) ID_OPERACION FROM tfgdb.dbo.TIPOS_OPER WHERE NOMBRE_OPERACION = '" + op + "')";
+
+                comando = new SqlCommand(strsql, conn);
+                comando.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
 
     }

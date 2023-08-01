@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionProyectos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.test = new System.Windows.Forms.Label();
             this.getEvents = new System.Windows.Forms.Timer(this.components);
@@ -53,7 +53,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panelOps = new System.Windows.Forms.Panel();
+            this.btnAceptarOp = new System.Windows.Forms.Button();
+            this.labelDenomiOp = new System.Windows.Forms.Label();
+            this.labelCodigoOp = new System.Windows.Forms.Label();
+            this.cbOperario = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cbMPOp = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cbOperaciones = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnCerrarPanelOps = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAñadirOp = new System.Windows.Forms.Button();
+            this.btnEliminarOp = new System.Windows.Forms.Button();
             this.labelNumCompo = new System.Windows.Forms.Label();
             this.labelDescPieza = new System.Windows.Forms.Label();
             this.labelNomPieza = new System.Windows.Forms.Label();
@@ -61,9 +75,8 @@
             this.dgvCompo = new System.Windows.Forms.DataGridView();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.panelOps.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompo)).BeginInit();
             this.SuspendLayout();
@@ -286,12 +299,152 @@
             this.label2.TabIndex = 48;
             this.label2.Text = "CLIENTE";
             // 
+            // panelOps
+            // 
+            this.panelOps.BackColor = System.Drawing.Color.Silver;
+            this.panelOps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelOps.Controls.Add(this.btnAceptarOp);
+            this.panelOps.Controls.Add(this.labelDenomiOp);
+            this.panelOps.Controls.Add(this.labelCodigoOp);
+            this.panelOps.Controls.Add(this.cbOperario);
+            this.panelOps.Controls.Add(this.label14);
+            this.panelOps.Controls.Add(this.cbMPOp);
+            this.panelOps.Controls.Add(this.label13);
+            this.panelOps.Controls.Add(this.cbOperaciones);
+            this.panelOps.Controls.Add(this.label8);
+            this.panelOps.Controls.Add(this.label7);
+            this.panelOps.Controls.Add(this.btnCerrarPanelOps);
+            this.panelOps.Location = new System.Drawing.Point(237, 155);
+            this.panelOps.Name = "panelOps";
+            this.panelOps.Size = new System.Drawing.Size(711, 519);
+            this.panelOps.TabIndex = 53;
+            this.panelOps.Visible = false;
+            // 
+            // btnAceptarOp
+            // 
+            this.btnAceptarOp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnAceptarOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptarOp.Location = new System.Drawing.Point(499, 427);
+            this.btnAceptarOp.Name = "btnAceptarOp";
+            this.btnAceptarOp.Size = new System.Drawing.Size(203, 76);
+            this.btnAceptarOp.TabIndex = 61;
+            this.btnAceptarOp.Text = "ACEPTAR";
+            this.btnAceptarOp.UseVisualStyleBackColor = false;
+            this.btnAceptarOp.Click += new System.EventHandler(this.btnAceptarOp_Click);
+            // 
+            // labelDenomiOp
+            // 
+            this.labelDenomiOp.AutoSize = true;
+            this.labelDenomiOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDenomiOp.ForeColor = System.Drawing.Color.Green;
+            this.labelDenomiOp.Location = new System.Drawing.Point(336, 254);
+            this.labelDenomiOp.Name = "labelDenomiOp";
+            this.labelDenomiOp.Size = new System.Drawing.Size(91, 25);
+            this.labelDenomiOp.TabIndex = 60;
+            this.labelDenomiOp.Text = "DENOMI";
+            // 
+            // labelCodigoOp
+            // 
+            this.labelCodigoOp.AutoSize = true;
+            this.labelCodigoOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCodigoOp.ForeColor = System.Drawing.Color.Green;
+            this.labelCodigoOp.Location = new System.Drawing.Point(28, 254);
+            this.labelCodigoOp.Name = "labelCodigoOp";
+            this.labelCodigoOp.Size = new System.Drawing.Size(93, 25);
+            this.labelCodigoOp.TabIndex = 59;
+            this.labelCodigoOp.Text = "CODIGO";
+            // 
+            // cbOperario
+            // 
+            this.cbOperario.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbOperario.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbOperario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbOperario.FormattingEnabled = true;
+            this.cbOperario.Location = new System.Drawing.Point(33, 331);
+            this.cbOperario.Name = "cbOperario";
+            this.cbOperario.Size = new System.Drawing.Size(547, 33);
+            this.cbOperario.TabIndex = 58;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(28, 303);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(243, 25);
+            this.label14.TabIndex = 57;
+            this.label14.Text = "OPERARIO ASIGNADO";
+            // 
+            // cbMPOp
+            // 
+            this.cbMPOp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMPOp.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbMPOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMPOp.FormattingEnabled = true;
+            this.cbMPOp.Location = new System.Drawing.Point(33, 205);
+            this.cbMPOp.Name = "cbMPOp";
+            this.cbMPOp.Size = new System.Drawing.Size(371, 33);
+            this.cbMPOp.TabIndex = 56;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(28, 177);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(296, 25);
+            this.label13.TabIndex = 55;
+            this.label13.Text = "ARTÍCULO MATERIA PRIMA";
+            // 
+            // cbOperaciones
+            // 
+            this.cbOperaciones.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbOperaciones.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbOperaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbOperaciones.FormattingEnabled = true;
+            this.cbOperaciones.Location = new System.Drawing.Point(33, 126);
+            this.cbOperaciones.Name = "cbOperaciones";
+            this.cbOperaciones.Size = new System.Drawing.Size(224, 33);
+            this.cbOperaciones.TabIndex = 54;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(28, 98);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(140, 25);
+            this.label8.TabIndex = 53;
+            this.label8.Text = "OPERACIÓN";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 14);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(557, 39);
+            this.label7.TabIndex = 52;
+            this.label7.Text = "OPERACIÓN DE COMPONENTE";
+            // 
+            // btnCerrarPanelOps
+            // 
+            this.btnCerrarPanelOps.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerrarPanelOps.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarPanelOps.Location = new System.Drawing.Point(648, 9);
+            this.btnCerrarPanelOps.Name = "btnCerrarPanelOps";
+            this.btnCerrarPanelOps.Size = new System.Drawing.Size(58, 50);
+            this.btnCerrarPanelOps.TabIndex = 51;
+            this.btnCerrarPanelOps.Text = "X";
+            this.btnCerrarPanelOps.UseVisualStyleBackColor = false;
+            this.btnCerrarPanelOps.Click += new System.EventHandler(this.btnCerrarPanelOps_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.btnAñadirOp);
+            this.panel2.Controls.Add(this.btnEliminarOp);
             this.panel2.Controls.Add(this.labelNumCompo);
             this.panel2.Controls.Add(this.labelDescPieza);
             this.panel2.Controls.Add(this.labelNomPieza);
@@ -299,11 +452,35 @@
             this.panel2.Controls.Add(this.dgvCompo);
             this.panel2.Controls.Add(this.btnCerrar);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(289, 156);
+            this.panel2.Location = new System.Drawing.Point(273, 159);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(659, 463);
-            this.panel2.TabIndex = 50;
+            this.panel2.TabIndex = 54;
             this.panel2.Visible = false;
+            // 
+            // btnAñadirOp
+            // 
+            this.btnAñadirOp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnAñadirOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAñadirOp.Location = new System.Drawing.Point(288, 386);
+            this.btnAñadirOp.Name = "btnAñadirOp";
+            this.btnAñadirOp.Size = new System.Drawing.Size(176, 68);
+            this.btnAñadirOp.TabIndex = 57;
+            this.btnAñadirOp.Text = "AÑADIR OPERACIÓN";
+            this.btnAñadirOp.UseVisualStyleBackColor = false;
+            this.btnAñadirOp.Click += new System.EventHandler(this.btnAñadirOp_Click);
+            // 
+            // btnEliminarOp
+            // 
+            this.btnEliminarOp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnEliminarOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarOp.Location = new System.Drawing.Point(470, 386);
+            this.btnEliminarOp.Name = "btnEliminarOp";
+            this.btnEliminarOp.Size = new System.Drawing.Size(176, 68);
+            this.btnEliminarOp.TabIndex = 56;
+            this.btnEliminarOp.Text = "ELIMINAR OPERACIÓN";
+            this.btnEliminarOp.UseVisualStyleBackColor = false;
+            this.btnEliminarOp.Click += new System.EventHandler(this.btnEliminarOp_Click);
             // 
             // labelNumCompo
             // 
@@ -355,19 +532,21 @@
             this.dgvCompo.AllowUserToOrderColumns = true;
             this.dgvCompo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCompo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCompo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompo.Location = new System.Drawing.Point(13, 230);
             this.dgvCompo.Name = "dgvCompo";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCompo.ReadOnly = true;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvCompo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCompo.Size = new System.Drawing.Size(633, 150);
             this.dgvCompo.TabIndex = 51;
             this.dgvCompo.Visible = false;
@@ -394,28 +573,6 @@
             this.label5.TabIndex = 49;
             this.label5.Text = "DATOS DE PIEZA";
             // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(470, 386);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(176, 68);
-            this.button3.TabIndex = 56;
-            this.button3.Text = "ELIMINAR OPERACIÓN";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(288, 386);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(176, 68);
-            this.button4.TabIndex = 57;
-            this.button4.Text = "AÑADIR OPERACIÓN";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
             // GestionProyectos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,6 +580,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1236, 696);
+            this.Controls.Add(this.panelOps);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label12);
@@ -441,6 +599,8 @@
             this.Load += new System.EventHandler(this.GestionProyectos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panelOps.ResumeLayout(false);
+            this.panelOps.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompo)).EndInit();
@@ -472,15 +632,27 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panelOps;
+        private System.Windows.Forms.Button btnAceptarOp;
+        private System.Windows.Forms.Label labelDenomiOp;
+        private System.Windows.Forms.Label labelCodigoOp;
+        private System.Windows.Forms.ComboBox cbOperario;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox cbMPOp;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cbOperaciones;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnCerrarPanelOps;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnCerrar;
-        private System.Windows.Forms.DataGridView dgvCompo;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnAñadirOp;
+        private System.Windows.Forms.Button btnEliminarOp;
         private System.Windows.Forms.Label labelNumCompo;
         private System.Windows.Forms.Label labelDescPieza;
         private System.Windows.Forms.Label labelNomPieza;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dgvCompo;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Label label5;
     }
 }
