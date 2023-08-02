@@ -243,7 +243,18 @@ namespace testFormsTFG.GestionProyectos
 
         private void treeViewProys_MouseClick(object sender, MouseEventArgs e)
         {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right) {
 
+                contextMenuStrip1.Show(Cursor.Position);
+
+                ContextMenu cm = new ContextMenu();
+                cm.MenuItems.Add("Item 1");
+                cm.MenuItems.Add("Item 2");
+
+                treeViewProys.SelectedNode = treeViewProys.GetNodeAt(e.X, e.Y);
+
+                //pictureBox1.ContextMenu = cm;
+            }
         }
 
         private void treeViewProys_DoubleClick(object sender, EventArgs e)
@@ -360,6 +371,9 @@ namespace testFormsTFG.GestionProyectos
             this.panelOps.Visible = false;
             this.panel2.Visible = true;
 
+            fbd.nuevaOperacion(this.labelNomPieza.Text, this.cbMPOp.SelectedItem.ToString(), id_proy, operarios.Rows[this.cbOperario.SelectedIndex]["DNI"].ToString(), (this.cbOperaciones.SelectedIndex+1).ToString());
+
+            this.dgvCompo.DataSource = fbd.obtenerComponentesMP(this.treeViewProys.SelectedNode.Name.ToString(), id_proy);
             MessageBox.Show("Nueva operación añadida", "INSERCIÓN COMPLETA");
 
         }
@@ -372,6 +386,26 @@ namespace testFormsTFG.GestionProyectos
         private void cbOperario_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void nUEVOCOMPONENTEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void eLIMNARCOMPONENTEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void treeViewProys_MouseDown(object sender, MouseEventArgs e)
+        {
+            treeViewProys.SelectedNode = treeViewProys.GetNodeAt(e.X, e.Y);
         }
     }
 }

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionProyectos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.test = new System.Windows.Forms.Label();
             this.getEvents = new System.Windows.Forms.Timer(this.components);
@@ -75,10 +75,14 @@
             this.dgvCompo = new System.Windows.Forms.DataGridView();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.nUEVOCOMPONENTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eLIMNARCOMPONENTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panelOps.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompo)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -128,6 +132,7 @@
             this.treeViewProys.TabIndex = 3;
             this.treeViewProys.DoubleClick += new System.EventHandler(this.treeViewProys_DoubleClick);
             this.treeViewProys.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeViewProys_MouseClick);
+            this.treeViewProys.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeViewProys_MouseDown);
             // 
             // label9
             // 
@@ -535,20 +540,20 @@
             this.dgvCompo.AllowUserToOrderColumns = true;
             this.dgvCompo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCompo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvCompo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompo.Location = new System.Drawing.Point(13, 230);
             this.dgvCompo.Name = "dgvCompo";
             this.dgvCompo.ReadOnly = true;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvCompo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCompo.Size = new System.Drawing.Size(633, 150);
             this.dgvCompo.TabIndex = 51;
@@ -575,6 +580,29 @@
             this.label5.Size = new System.Drawing.Size(315, 39);
             this.label5.TabIndex = 49;
             this.label5.Text = "DATOS DE PIEZA";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nUEVOCOMPONENTEToolStripMenuItem,
+            this.eLIMNARCOMPONENTEToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(208, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // nUEVOCOMPONENTEToolStripMenuItem
+            // 
+            this.nUEVOCOMPONENTEToolStripMenuItem.Name = "nUEVOCOMPONENTEToolStripMenuItem";
+            this.nUEVOCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.nUEVOCOMPONENTEToolStripMenuItem.Text = "NUEVO COMPONENTE";
+            this.nUEVOCOMPONENTEToolStripMenuItem.Click += new System.EventHandler(this.nUEVOCOMPONENTEToolStripMenuItem_Click);
+            // 
+            // eLIMNARCOMPONENTEToolStripMenuItem
+            // 
+            this.eLIMNARCOMPONENTEToolStripMenuItem.Name = "eLIMNARCOMPONENTEToolStripMenuItem";
+            this.eLIMNARCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.eLIMNARCOMPONENTEToolStripMenuItem.Text = "ELIMNAR COMPONENTE";
+            this.eLIMNARCOMPONENTEToolStripMenuItem.Click += new System.EventHandler(this.eLIMNARCOMPONENTEToolStripMenuItem_Click);
             // 
             // GestionProyectos
             // 
@@ -607,6 +635,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompo)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -657,5 +686,8 @@
         private System.Windows.Forms.DataGridView dgvCompo;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem nUEVOCOMPONENTEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eLIMNARCOMPONENTEToolStripMenuItem;
     }
 }
