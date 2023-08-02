@@ -357,6 +357,20 @@ namespace testFormsTFG.GestionProyectos
 
         private void btnAceptarOp_Click(object sender, EventArgs e)
         {
+            this.panelOps.Visible = false;
+            this.panel2.Visible = true;
+
+            MessageBox.Show("Nueva operación añadida", "INSERCIÓN COMPLETA");
+
+        }
+
+        private void cbOperaciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbOperario_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
