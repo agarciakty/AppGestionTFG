@@ -1036,6 +1036,62 @@ namespace AppGestionTFG
             }
         }
 
+        public void nuevaPieza(string pieza, string desc, string proy, string padre)
+        {
+            SqlCommand comando;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + "insert into tfgdb.dbo.PIEZAS (CODIGO, DESCRIPCION, ID_PROYECTO, CODIGO_PADRE, FECHA_CRE, USUARIO_CRE) values ('" + pieza + "', '" + desc + "', '" + proy + "','" + padre + "',GETDATE(), '" + Environment.UserName + "')";
+
+                comando = new SqlCommand(strsql, conn);
+                comando.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void eliminarPieza(string pieza, string proy, string padre)
+        {
+            SqlCommand comando;
+            string strsql = "";
+
+            try
+            {
+
+                conn.Open();
+
+                strsql = "";
+                strsql = strsql + "delete from tfgdb.dbo.PIEZAS where ID_PROYECTO = '" + proy + "' and CODIGO = '" + pieza + "' AND CODIGO_PADRE = '" + padre + "'";
+
+                comando = new SqlCommand(strsql, conn);
+                comando.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
 
     }

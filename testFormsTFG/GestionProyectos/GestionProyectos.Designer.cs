@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionProyectos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.test = new System.Windows.Forms.Label();
             this.getEvents = new System.Windows.Forms.Timer(this.components);
@@ -56,7 +56,6 @@
             this.panelOps = new System.Windows.Forms.Panel();
             this.btnAceptarOp = new System.Windows.Forms.Button();
             this.labelDenomiOp = new System.Windows.Forms.Label();
-            this.labelCodigoOp = new System.Windows.Forms.Label();
             this.cbOperario = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.cbMPOp = new System.Windows.Forms.ComboBox();
@@ -70,7 +69,6 @@
             this.btnEliminarOp = new System.Windows.Forms.Button();
             this.labelNumCompo = new System.Windows.Forms.Label();
             this.labelDescPieza = new System.Windows.Forms.Label();
-            this.labelNomPieza = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvCompo = new System.Windows.Forms.DataGridView();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -78,11 +76,21 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.nUEVOCOMPONENTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eLIMNARCOMPONENTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelNomPieza = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnAceptarNuevaPieza = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btnCerrarPanel3 = new System.Windows.Forms.Button();
+            this.tbCodigoPieza = new System.Windows.Forms.TextBox();
+            this.tbDescPieza = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelOps.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompo)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -310,7 +318,6 @@
             this.panelOps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelOps.Controls.Add(this.btnAceptarOp);
             this.panelOps.Controls.Add(this.labelDenomiOp);
-            this.panelOps.Controls.Add(this.labelCodigoOp);
             this.panelOps.Controls.Add(this.cbOperario);
             this.panelOps.Controls.Add(this.label14);
             this.panelOps.Controls.Add(this.cbMPOp);
@@ -342,22 +349,11 @@
             this.labelDenomiOp.AutoSize = true;
             this.labelDenomiOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDenomiOp.ForeColor = System.Drawing.Color.Green;
-            this.labelDenomiOp.Location = new System.Drawing.Point(336, 254);
+            this.labelDenomiOp.Location = new System.Drawing.Point(30, 257);
             this.labelDenomiOp.Name = "labelDenomiOp";
             this.labelDenomiOp.Size = new System.Drawing.Size(91, 25);
             this.labelDenomiOp.TabIndex = 60;
             this.labelDenomiOp.Text = "DENOMI";
-            // 
-            // labelCodigoOp
-            // 
-            this.labelCodigoOp.AutoSize = true;
-            this.labelCodigoOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCodigoOp.ForeColor = System.Drawing.Color.Green;
-            this.labelCodigoOp.Location = new System.Drawing.Point(28, 254);
-            this.labelCodigoOp.Name = "labelCodigoOp";
-            this.labelCodigoOp.Size = new System.Drawing.Size(93, 25);
-            this.labelCodigoOp.TabIndex = 59;
-            this.labelCodigoOp.Text = "CODIGO";
             // 
             // cbOperario
             // 
@@ -512,17 +508,6 @@
             this.labelDescPieza.TabIndex = 54;
             this.labelDescPieza.Text = "NOMBRE";
             // 
-            // labelNomPieza
-            // 
-            this.labelNomPieza.AutoSize = true;
-            this.labelNomPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomPieza.ForeColor = System.Drawing.Color.Blue;
-            this.labelNomPieza.Location = new System.Drawing.Point(15, 67);
-            this.labelNomPieza.Name = "labelNomPieza";
-            this.labelNomPieza.Size = new System.Drawing.Size(133, 31);
-            this.labelNomPieza.TabIndex = 53;
-            this.labelNomPieza.Text = "NOMBRE";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -540,20 +525,20 @@
             this.dgvCompo.AllowUserToOrderColumns = true;
             this.dgvCompo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCompo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvCompo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompo.Location = new System.Drawing.Point(13, 230);
             this.dgvCompo.Name = "dgvCompo";
             this.dgvCompo.ReadOnly = true;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvCompo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCompo.Size = new System.Drawing.Size(633, 150);
             this.dgvCompo.TabIndex = 51;
@@ -583,26 +568,125 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nUEVOCOMPONENTEToolStripMenuItem,
             this.eLIMNARCOMPONENTEToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(208, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(227, 68);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // nUEVOCOMPONENTEToolStripMenuItem
             // 
             this.nUEVOCOMPONENTEToolStripMenuItem.Name = "nUEVOCOMPONENTEToolStripMenuItem";
-            this.nUEVOCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.nUEVOCOMPONENTEToolStripMenuItem.Text = "NUEVO COMPONENTE";
+            this.nUEVOCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(226, 32);
+            this.nUEVOCOMPONENTEToolStripMenuItem.Text = "NUEVA PIEZA";
             this.nUEVOCOMPONENTEToolStripMenuItem.Click += new System.EventHandler(this.nUEVOCOMPONENTEToolStripMenuItem_Click);
             // 
             // eLIMNARCOMPONENTEToolStripMenuItem
             // 
             this.eLIMNARCOMPONENTEToolStripMenuItem.Name = "eLIMNARCOMPONENTEToolStripMenuItem";
-            this.eLIMNARCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.eLIMNARCOMPONENTEToolStripMenuItem.Text = "ELIMNAR COMPONENTE";
+            this.eLIMNARCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(226, 32);
+            this.eLIMNARCOMPONENTEToolStripMenuItem.Text = "ELIMINAR PIEZA";
             this.eLIMNARCOMPONENTEToolStripMenuItem.Click += new System.EventHandler(this.eLIMNARCOMPONENTEToolStripMenuItem_Click);
+            // 
+            // labelNomPieza
+            // 
+            this.labelNomPieza.AutoSize = true;
+            this.labelNomPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNomPieza.ForeColor = System.Drawing.Color.Blue;
+            this.labelNomPieza.Location = new System.Drawing.Point(15, 67);
+            this.labelNomPieza.Name = "labelNomPieza";
+            this.labelNomPieza.Size = new System.Drawing.Size(133, 31);
+            this.labelNomPieza.TabIndex = 53;
+            this.labelNomPieza.Text = "NOMBRE";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Silver;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.tbDescPieza);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.tbCodigoPieza);
+            this.panel3.Controls.Add(this.btnAceptarNuevaPieza);
+            this.panel3.Controls.Add(this.label18);
+            this.panel3.Controls.Add(this.label19);
+            this.panel3.Controls.Add(this.btnCerrarPanel3);
+            this.panel3.Location = new System.Drawing.Point(237, 178);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(706, 399);
+            this.panel3.TabIndex = 62;
+            this.panel3.Visible = false;
+            // 
+            // btnAceptarNuevaPieza
+            // 
+            this.btnAceptarNuevaPieza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnAceptarNuevaPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptarNuevaPieza.Location = new System.Drawing.Point(497, 308);
+            this.btnAceptarNuevaPieza.Name = "btnAceptarNuevaPieza";
+            this.btnAceptarNuevaPieza.Size = new System.Drawing.Size(203, 76);
+            this.btnAceptarNuevaPieza.TabIndex = 61;
+            this.btnAceptarNuevaPieza.Text = "ACEPTAR";
+            this.btnAceptarNuevaPieza.UseVisualStyleBackColor = false;
+            this.btnAceptarNuevaPieza.Click += new System.EventHandler(this.btnAceptarNuevaPieza_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(23, 77);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(202, 25);
+            this.label18.TabIndex = 53;
+            this.label18.Text = "CÓDIGO DE PIEZA";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(21, 14);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(256, 39);
+            this.label19.TabIndex = 52;
+            this.label19.Text = "NUEVA PIEZA";
+            // 
+            // btnCerrarPanel3
+            // 
+            this.btnCerrarPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerrarPanel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarPanel3.Location = new System.Drawing.Point(642, 9);
+            this.btnCerrarPanel3.Name = "btnCerrarPanel3";
+            this.btnCerrarPanel3.Size = new System.Drawing.Size(58, 50);
+            this.btnCerrarPanel3.TabIndex = 51;
+            this.btnCerrarPanel3.Text = "X";
+            this.btnCerrarPanel3.UseVisualStyleBackColor = false;
+            this.btnCerrarPanel3.Click += new System.EventHandler(this.btnCerrarPanel3_Click);
+            // 
+            // tbCodigoPieza
+            // 
+            this.tbCodigoPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCodigoPieza.Location = new System.Drawing.Point(28, 115);
+            this.tbCodigoPieza.Name = "tbCodigoPieza";
+            this.tbCodigoPieza.Size = new System.Drawing.Size(251, 38);
+            this.tbCodigoPieza.TabIndex = 62;
+            // 
+            // tbDescPieza
+            // 
+            this.tbDescPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDescPieza.Location = new System.Drawing.Point(28, 230);
+            this.tbDescPieza.Name = "tbDescPieza";
+            this.tbDescPieza.Size = new System.Drawing.Size(508, 38);
+            this.tbDescPieza.TabIndex = 64;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(23, 192);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(160, 25);
+            this.label15.TabIndex = 63;
+            this.label15.Text = "DESCRIPCIÓN";
             // 
             // GestionProyectos
             // 
@@ -611,6 +695,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1236, 696);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelOps);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -636,6 +721,8 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompo)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -667,7 +754,6 @@
         private System.Windows.Forms.Panel panelOps;
         private System.Windows.Forms.Button btnAceptarOp;
         private System.Windows.Forms.Label labelDenomiOp;
-        private System.Windows.Forms.Label labelCodigoOp;
         private System.Windows.Forms.ComboBox cbOperario;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cbMPOp;
@@ -681,7 +767,6 @@
         private System.Windows.Forms.Button btnEliminarOp;
         private System.Windows.Forms.Label labelNumCompo;
         private System.Windows.Forms.Label labelDescPieza;
-        private System.Windows.Forms.Label labelNomPieza;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvCompo;
         private System.Windows.Forms.Button btnCerrar;
@@ -689,5 +774,14 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem nUEVOCOMPONENTEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eLIMNARCOMPONENTEToolStripMenuItem;
+        private System.Windows.Forms.Label labelNomPieza;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox tbCodigoPieza;
+        private System.Windows.Forms.Button btnAceptarNuevaPieza;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button btnCerrarPanel3;
+        private System.Windows.Forms.TextBox tbDescPieza;
+        private System.Windows.Forms.Label label15;
     }
 }

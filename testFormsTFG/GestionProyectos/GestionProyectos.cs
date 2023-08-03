@@ -363,7 +363,6 @@ namespace testFormsTFG.GestionProyectos
         private void cbMPOp_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.labelDenomiOp.Text = this.MParticulos.Rows[this.cbMPOp.SelectedIndex][2].ToString();
-            this.labelCodigoOp.Text = this.cbMPOp.SelectedText.ToString();
         }
 
         private void btnAceptarOp_Click(object sender, EventArgs e)
@@ -390,12 +389,46 @@ namespace testFormsTFG.GestionProyectos
 
         private void nUEVOCOMPONENTEToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.panel3.Visible = true;
+
+            this.tbCodigoPieza.Text = this.treeViewProys.SelectedNode.Name.ToString() + "." + (this.treeViewProys.SelectedNode.Nodes.Count+1);
 
         }
 
         private void eLIMNARCOMPONENTEToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if  (treeViewProys.SelectedNode.Nodes.Count > 0)
+            {
+                MessageBox.Show("El nodo seleccionado no se puede eliminar porque contiene hijos", "ATENCIÓN");
+            }
+            else
+            {
+                foreach( DataRow row in fbd.obtenerComponentesMP(this.treeViewProys.SelectedNode.Name.ToString(), id_proy).Rows)
+                {
+                    //AQUÍ LO SUYO ES PONER EL ON DELETE CASCADE PARA NO HACERLO POR CÓDIGO
+                    //fbd.eliminarOperacion()
+                }
 
+                DialogResult dr = MessageBox.Show("Se va a eliminar la pieza " + this.treeViewProys.SelectedNode.Name.ToString() + ", ¿Continuar?",
+                      "ATENCIÓN", MessageBoxButtons.YesNo);
+                switch (dr)
+                {
+                    case DialogResult.Yes:
+
+                        string padre = "0";
+                        if (treeViewProys.SelectedNode.Parent != null)
+                        {
+                            padre = treeViewProys.SelectedNode.Parent.Name.ToString();
+                        }
+                        fbd.eliminarPieza(this.treeViewProys.SelectedNode.Name.ToString(), id_proy,padre);
+                        this.treeViewProys.SelectedNode.Remove();
+                        MessageBox.Show("Operaciones eliminadas", "BORRADO COMPLETO");
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+
+            }
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -406,6 +439,16 @@ namespace testFormsTFG.GestionProyectos
         private void treeViewProys_MouseDown(object sender, MouseEventArgs e)
         {
             treeViewProys.SelectedNode = treeViewProys.GetNodeAt(e.X, e.Y);
+        }
+
+        private void btnAceptarNuevaPieza_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCerrarPanel3_Click(object sender, EventArgs e)
+        {
+            this.panel3.Visible = false;
         }
     }
 }
