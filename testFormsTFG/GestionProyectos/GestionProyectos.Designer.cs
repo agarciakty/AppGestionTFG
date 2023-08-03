@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionProyectos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.test = new System.Windows.Forms.Label();
             this.getEvents = new System.Windows.Forms.Timer(this.components);
@@ -69,6 +69,7 @@
             this.btnEliminarOp = new System.Windows.Forms.Button();
             this.labelNumCompo = new System.Windows.Forms.Label();
             this.labelDescPieza = new System.Windows.Forms.Label();
+            this.labelNomPieza = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvCompo = new System.Windows.Forms.DataGridView();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -76,15 +77,14 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.nUEVOCOMPONENTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eLIMNARCOMPONENTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelNomPieza = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.tbDescPieza = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbCodigoPieza = new System.Windows.Forms.TextBox();
             this.btnAceptarNuevaPieza = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.btnCerrarPanel3 = new System.Windows.Forms.Button();
-            this.tbCodigoPieza = new System.Windows.Forms.TextBox();
-            this.tbDescPieza = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelOps.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -138,6 +138,7 @@
             this.treeViewProys.Name = "treeViewProys";
             this.treeViewProys.Size = new System.Drawing.Size(1214, 330);
             this.treeViewProys.TabIndex = 3;
+            this.treeViewProys.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewProys_AfterSelect);
             this.treeViewProys.DoubleClick += new System.EventHandler(this.treeViewProys_DoubleClick);
             this.treeViewProys.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeViewProys_MouseClick);
             this.treeViewProys.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeViewProys_MouseDown);
@@ -508,6 +509,17 @@
             this.labelDescPieza.TabIndex = 54;
             this.labelDescPieza.Text = "NOMBRE";
             // 
+            // labelNomPieza
+            // 
+            this.labelNomPieza.AutoSize = true;
+            this.labelNomPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNomPieza.ForeColor = System.Drawing.Color.Blue;
+            this.labelNomPieza.Location = new System.Drawing.Point(15, 67);
+            this.labelNomPieza.Name = "labelNomPieza";
+            this.labelNomPieza.Size = new System.Drawing.Size(133, 31);
+            this.labelNomPieza.TabIndex = 53;
+            this.labelNomPieza.Text = "NOMBRE";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -525,20 +537,20 @@
             this.dgvCompo.AllowUserToOrderColumns = true;
             this.dgvCompo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCompo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCompo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompo.Location = new System.Drawing.Point(13, 230);
             this.dgvCompo.Name = "dgvCompo";
             this.dgvCompo.ReadOnly = true;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCompo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCompo.Size = new System.Drawing.Size(633, 150);
             this.dgvCompo.TabIndex = 51;
@@ -590,17 +602,6 @@
             this.eLIMNARCOMPONENTEToolStripMenuItem.Text = "ELIMINAR PIEZA";
             this.eLIMNARCOMPONENTEToolStripMenuItem.Click += new System.EventHandler(this.eLIMNARCOMPONENTEToolStripMenuItem_Click);
             // 
-            // labelNomPieza
-            // 
-            this.labelNomPieza.AutoSize = true;
-            this.labelNomPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomPieza.ForeColor = System.Drawing.Color.Blue;
-            this.labelNomPieza.Location = new System.Drawing.Point(15, 67);
-            this.labelNomPieza.Name = "labelNomPieza";
-            this.labelNomPieza.Size = new System.Drawing.Size(133, 31);
-            this.labelNomPieza.TabIndex = 53;
-            this.labelNomPieza.Text = "NOMBRE";
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Silver;
@@ -617,6 +618,32 @@
             this.panel3.Size = new System.Drawing.Size(706, 399);
             this.panel3.TabIndex = 62;
             this.panel3.Visible = false;
+            // 
+            // tbDescPieza
+            // 
+            this.tbDescPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDescPieza.Location = new System.Drawing.Point(28, 230);
+            this.tbDescPieza.Name = "tbDescPieza";
+            this.tbDescPieza.Size = new System.Drawing.Size(508, 38);
+            this.tbDescPieza.TabIndex = 64;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(23, 192);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(160, 25);
+            this.label15.TabIndex = 63;
+            this.label15.Text = "DESCRIPCIÓN";
+            // 
+            // tbCodigoPieza
+            // 
+            this.tbCodigoPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCodigoPieza.Location = new System.Drawing.Point(28, 115);
+            this.tbCodigoPieza.Name = "tbCodigoPieza";
+            this.tbCodigoPieza.Size = new System.Drawing.Size(251, 38);
+            this.tbCodigoPieza.TabIndex = 62;
             // 
             // btnAceptarNuevaPieza
             // 
@@ -661,32 +688,6 @@
             this.btnCerrarPanel3.Text = "X";
             this.btnCerrarPanel3.UseVisualStyleBackColor = false;
             this.btnCerrarPanel3.Click += new System.EventHandler(this.btnCerrarPanel3_Click);
-            // 
-            // tbCodigoPieza
-            // 
-            this.tbCodigoPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCodigoPieza.Location = new System.Drawing.Point(28, 115);
-            this.tbCodigoPieza.Name = "tbCodigoPieza";
-            this.tbCodigoPieza.Size = new System.Drawing.Size(251, 38);
-            this.tbCodigoPieza.TabIndex = 62;
-            // 
-            // tbDescPieza
-            // 
-            this.tbDescPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDescPieza.Location = new System.Drawing.Point(28, 230);
-            this.tbDescPieza.Name = "tbDescPieza";
-            this.tbDescPieza.Size = new System.Drawing.Size(508, 38);
-            this.tbDescPieza.TabIndex = 64;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(23, 192);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(160, 25);
-            this.label15.TabIndex = 63;
-            this.label15.Text = "DESCRIPCIÓN";
             // 
             // GestionProyectos
             // 

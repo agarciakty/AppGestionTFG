@@ -33,6 +33,7 @@ namespace testFormsTFG.GestionProyectos
         DataTable datosProy = new DataTable();
 
         string id_proy = "0";
+        string id_padre = "0";
 
         DataTable operarios = new DataTable();
         DataTable operaciones = new DataTable();
@@ -241,16 +242,12 @@ namespace testFormsTFG.GestionProyectos
             }
         }
 
+
         private void treeViewProys_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right) {
 
                 contextMenuStrip1.Show(Cursor.Position);
-
-                ContextMenu cm = new ContextMenu();
-                cm.MenuItems.Add("Item 1");
-                cm.MenuItems.Add("Item 2");
-
                 treeViewProys.SelectedNode = treeViewProys.GetNodeAt(e.X, e.Y);
 
                 //pictureBox1.ContextMenu = cm;
@@ -391,7 +388,14 @@ namespace testFormsTFG.GestionProyectos
         {
             this.panel3.Visible = true;
 
-            this.tbCodigoPieza.Text = this.treeViewProys.SelectedNode.Name.ToString() + "." + (this.treeViewProys.SelectedNode.Nodes.Count+1);
+            if (id_padre == "0")
+            {
+                this.tbCodigoPieza.Text = "P" + id_proy + "-" + (this.treeViewProys.Nodes.Count + 1);
+            }
+            else
+            {
+                this.tbCodigoPieza.Text = this.treeViewProys.SelectedNode.Name.ToString() + "." + (this.treeViewProys.SelectedNode.Nodes.Count + 1);
+            }
 
         }
 
@@ -438,17 +442,45 @@ namespace testFormsTFG.GestionProyectos
 
         private void treeViewProys_MouseDown(object sender, MouseEventArgs e)
         {
-            treeViewProys.SelectedNode = treeViewProys.GetNodeAt(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+
+                contextMenuStrip1.Show(Cursor.Position);
+
+                TreeNode node = treeViewProys.GetNodeAt(e.X, e.Y);
+
+                if (node == null)
+                {
+                    id_padre = "0";
+                }
+                else
+                {
+                    id_padre = node.Name.ToString();
+                }
+
+                //pictureBox1.ContextMenu = cm;
+            }
         }
 
         private void btnAceptarNuevaPieza_Click(object sender, EventArgs e)
         {
+            fbd.nuevaPieza(this.tbCodigoPieza.Text, this.tbDescPieza.Text, id_proy, id_padre);
+            
+            this.treeViewProys.Nodes.Clear();
+            poblarTreeView();
+
+            MessageBox.Show("Se ha insertado una nueva pieza para el proyecto " + this.cbProys.Text, "NUEVA PIEZA AÑADIDA");
 
         }
 
         private void btnCerrarPanel3_Click(object sender, EventArgs e)
         {
             this.panel3.Visible = false;
+        }
+
+        private void treeViewProys_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
         }
     }
 }
