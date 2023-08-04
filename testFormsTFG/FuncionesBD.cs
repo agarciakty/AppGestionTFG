@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ClosedXML.Excel.XLPredefinedFormat;
 
 namespace AppGestionTFG
 
@@ -17,6 +18,27 @@ namespace AppGestionTFG
 
         static string connString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
         SqlConnection conn = new SqlConnection(connString);
+
+
+        public int insertar(string tabla, List<string> atb, List<string> valores)
+        {
+            string strsql = "INSERT INTO " + tabla + " (" + string.Join(", ", atb) + ") VALUES ('" + string.Join("', '", valores) + "')";
+
+            int ins;
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            using (conn)
+            {
+                ins = cmd.ExecuteNonQuery();
+            }
+
+            conn.Close();
+
+            return ins;
+        }
+
         public string obtenerPrivilegiosUsuario(string user, string pass)
         {
             string priv = "";
@@ -458,7 +480,7 @@ namespace AppGestionTFG
         }
 
         //MP PAQUETES
-        public DataTable getPaquetes(DateTime fechadesde, DateTime fechahasta)
+        public DataTable getPaquetes(System.DateTime fechadesde, System.DateTime fechahasta)
         {
             DataTable paqs = new DataTable();
 

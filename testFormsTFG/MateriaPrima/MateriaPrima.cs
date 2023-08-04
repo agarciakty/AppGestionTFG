@@ -47,7 +47,7 @@ namespace testFormsTFG.MateriaPrima
 
         private void cargarPaquetesTimeSpan()
         {
-            tablaPaqs = fbd.getPaquetes(this.dateTimePicker1.Value, this.dateTimePicker2.Value);
+            tablaPaqs = fbd.getPaquetes(this.dateTimePicker1.Value, dateTimePicker2.Value);
 
             this.dgvPaquetes.DataSource = tablaPaqs;
         }

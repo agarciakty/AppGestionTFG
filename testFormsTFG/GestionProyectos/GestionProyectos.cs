@@ -54,6 +54,8 @@ namespace testFormsTFG.GestionProyectos
                 this.cbProys.Items.Add(row[0].ToString() + "#" + row[1].ToString());
             }
             this.cbProys.SelectedIndex = 0;
+
+            this.labelHeader.Text = "PROYECTO";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -190,13 +192,26 @@ namespace testFormsTFG.GestionProyectos
             //EventsResource.InsertRequest(service, ev, "primary");
         }
 
+        private void resetearVistaProyecto()
+        {
+            this.tbNombre.Text = datosProy.Rows[this.cbProys.SelectedIndex][1].ToString();
+            this.tbNombre.ReadOnly = true;
+
+            this.tbDesc.Text = datosProy.Rows[this.cbProys.SelectedIndex][2].ToString();
+            tbDesc.ReadOnly = true;
+
+            this.tbCliente.Text = datosProy.Rows[this.cbProys.SelectedIndex][5].ToString();
+            tbCliente.ReadOnly = true;
+
+            this.dtpFIni.Value = (DateTime)datosProy.Rows[this.cbProys.SelectedIndex][3];
+            dtpFIni.Enabled = false;
+
+            poblarTreeView();
+        }
+
         private void cbProys_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.labelNom.Text = datosProy.Rows[this.cbProys.SelectedIndex][1].ToString();
-            this.labelDesc.Text = datosProy.Rows[this.cbProys.SelectedIndex][2].ToString();
-            this.labelCliente.Text = datosProy.Rows[this.cbProys.SelectedIndex][5].ToString();
-            this.labelFIni.Text = datosProy.Rows[this.cbProys.SelectedIndex][3].ToString().Substring(0, datosProy.Rows[this.cbProys.SelectedIndex][3].ToString().IndexOf(' '));
-            poblarTreeView();
+            resetearVistaProyecto();
         }
 
         private void poblarTreeView()
@@ -471,6 +486,8 @@ namespace testFormsTFG.GestionProyectos
 
             MessageBox.Show("Se ha insertado una nueva pieza para el proyecto " + this.cbProys.Text, "NUEVA PIEZA AÑADIDA");
 
+            this.panel3.Visible = false;
+
         }
 
         private void btnCerrarPanel3_Click(object sender, EventArgs e)
@@ -481,6 +498,69 @@ namespace testFormsTFG.GestionProyectos
         private void treeViewProys_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+
+            this.btnAcepNuevoProy.Visible = true;
+            this.btnCancNuevoproy.Visible = true;
+
+            this.treeViewProys.Nodes.Clear();
+
+            this.tbNombre.Text = "";
+            this.tbNombre.ReadOnly = false;
+
+            this.tbDesc.Text = "";
+            tbDesc.ReadOnly = false;
+
+            this.tbCliente.Text = "";
+            tbCliente.ReadOnly = false;
+
+            this.dtpFIni.Value = DateTime.Now;
+            dtpFIni.Enabled = true;
+
+            this.cbProys.Visible = false;
+
+            this.btnNuevo.Enabled = false;
+            this.btnEliminar.Enabled = false;
+
+            this.labelHeader.Text = "PROYECTO NUEVO";
+        }
+
+        private void btnCancNuevoproy_Click(object sender, EventArgs e)
+        {
+            this.labelHeader.Text = "PROYECTO";
+            this.cbProys.Visible = true;
+
+            this.btnAcepNuevoProy.Visible = false;
+            this.btnCancNuevoproy.Visible = false;
+
+            this.btnNuevo.Enabled = true;
+            this.btnEliminar.Enabled = true;
+
+            resetearVistaProyecto();
+
+        }
+
+        private void btnAcepNuevoProy_Click(object sender, EventArgs e)
+        {
+            List<string> listaAtb = new List<string>();
+            listaAtb.Add("NOMBRE_PROY");
+            listaAtb.Add("DESC_PROY");
+            listaAtb.Add("FECHA_INI");
+            listaAtb.Add("CLIENTE");
+            listaAtb.Add("ESTADO");
+
+            List<string> listaValores = new List<string>();
+            listaValores.Add(tbNombre.Text);
+            listaValores.Add(tbDesc.Text);
+            listaValores.Add(dtpFIni.Text);
+            listaValores.Add(tbCliente.Text);
+            listaValores.Add("EN PROCESO");
+
+
+            fbd.insertar("tfgdb.dbo.PROYECTOS", listaAtb, listaValores);
         }
     }
 }
