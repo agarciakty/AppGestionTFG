@@ -38,6 +38,7 @@ namespace testFormsTFG.GestionProyectos
         DataTable operarios = new DataTable();
         DataTable operaciones = new DataTable();
         DataTable MParticulos = new DataTable();
+        Events listaEventos = new Events();
 
         public GestionProyectos()
         {
@@ -45,7 +46,7 @@ namespace testFormsTFG.GestionProyectos
             obtenerEventos();
         }
 
-        private void GestionProyectos_Load(object sender, EventArgs e)
+        private void cargarProys()
         {
             this.cbProys.Items.Clear();
             datosProy = fbd.obtenerProys();
@@ -56,28 +57,16 @@ namespace testFormsTFG.GestionProyectos
             this.cbProys.SelectedIndex = 0;
 
             this.labelHeader.Text = "PROYECTO";
+
+            this.cbProys.Visible = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void GestionProyectos_Load(object sender, EventArgs e)
         {
-            GoogleUser User = new GoogleUser("angelgarcia1311", "angelgarcia1311@gmail.com", "Googleaccount113@", "clientId", "client secret");
-            string accessToken;
-            string refreshToken;
-
-            // Get access token
-            GoogleOAuthHelper.GetAccessToken(User, out accessToken, out refreshToken);
-
-            // Get instance of Gmail client
-            using (IGmailClient client = GmailClient.GetInstance(accessToken, User.EMail))
-            {
-                // Insert and get calendar
-                Aspose.Email.Clients.Google.Calendar calendar = new Aspose.Email.Clients.Google.Calendar("summary - " + Guid.NewGuid().ToString(), null, null, "America/Los_Angeles");
-
-                // Insert calendar and retrieve id
-                string id = client.CreateCalendar(calendar);
-                Aspose.Email.Clients.Google.Calendar cal = client.FetchCalendar(id);
-            }
+            cargarProys();
         }
+
+        
 
         private void obtenerEventos()
         {
@@ -115,11 +104,11 @@ namespace testFormsTFG.GestionProyectos
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
             // List events.
-            Events events = request.Execute();
+            listaEventos = request.Execute();
             test.Text = "";
-            if (events.Items != null && events.Items.Count > 0)
+            if (listaEventos.Items != null && listaEventos.Items.Count > 0)
             {
-                foreach (var eventItem in events.Items)
+                foreach (var eventItem in listaEventos.Items)
                 {
                     DateTime dateTime;
                     if (eventItem.Start.DateTime != null)
@@ -146,51 +135,6 @@ namespace testFormsTFG.GestionProyectos
             obtenerEventos();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            UserCredential credential;
-
-
-            using (var stream =
-                new FileStream("credenciales.json", FileMode.Open, FileAccess.Read))
-            {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.FromStream(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
-
-
-
-            Event ev = new Event();
-            EventDateTime start = new EventDateTime();
-            EventDateTime end = new EventDateTime();
-            start.Date = "2023-07-27";
-            end.Date = "2023-07-27";
-
-
-            ev.Start = start;
-            ev.End = end;
-            ev.Summary = "EVENTO NUEVO";
-            ev.Description = "Desc";
-
-            var service = new CalendarService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
-            var calendarId = "primary";
-            Event recurringEvent = service.Events.Insert(ev, calendarId).Execute();
-
-            //EventsResource.InsertRequest(service, ev, "primary");
-        }
 
         private void resetearVistaProyecto()
         {
@@ -269,7 +213,7 @@ namespace testFormsTFG.GestionProyectos
             }
         }
 
-        private void treeViewProys_DoubleClick(object sender, EventArgs e)
+        private void datosPieza()
         {
             this.panel2.Visible = true;
 
@@ -284,12 +228,17 @@ namespace testFormsTFG.GestionProyectos
             }
             else
             {
-                
+
                 this.dgvCompo.Visible = true;
                 this.panel2.Size = new Size(659, 463);
                 this.dgvCompo.DataSource = fbd.obtenerComponentesMP(this.treeViewProys.SelectedNode.Name.ToString(), id_proy);
                 this.labelNumCompo.Text = "(" + this.dgvCompo.Rows.Count + ", ARTÍCULOS MATERIA PRIMA)";
             }
+        }
+
+        private void treeViewProys_DoubleClick(object sender, EventArgs e)
+        {
+            datosPieza();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -304,6 +253,16 @@ namespace testFormsTFG.GestionProyectos
             switch (dr)
             {
                 case DialogResult.Yes:
+
+                    List<string> cond = new List<string>();
+                    cond.Add("ID_PROY = '" + id_proy + "'"); 
+
+                    fbd.eliminar("tfgdb.dbo.PROYECTOS", cond);
+
+                    cargarProys();
+
+                    MessageBox.Show("Proyecto eliminado", "BORRADO COMPLETO");
+
                     break;
                 case DialogResult.No:
                     break;
@@ -502,7 +461,7 @@ namespace testFormsTFG.GestionProyectos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-
+            this.btnCalendar.Enabled = false;
             this.btnAcepNuevoProy.Visible = true;
             this.btnCancNuevoproy.Visible = true;
 
@@ -541,6 +500,8 @@ namespace testFormsTFG.GestionProyectos
 
             resetearVistaProyecto();
 
+            this.btnCalendar.Enabled = true;
+
         }
 
         private void btnAcepNuevoProy_Click(object sender, EventArgs e)
@@ -560,7 +521,113 @@ namespace testFormsTFG.GestionProyectos
             listaValores.Add("EN PROCESO");
 
 
-            fbd.insertar("tfgdb.dbo.PROYECTOS", listaAtb, listaValores);
+            string id_proy_aux = fbd.insertar("tfgdb.dbo.PROYECTOS", listaAtb, listaValores, "ID_PROY").ToString();
+            string nombre_aux = tbNombre.Text;
+            cargarProys();
+
+            string proyCombo = id_proy_aux + "#" + nombre_aux;
+
+            cbProys.SelectedIndex = cbProys.FindStringExact(proyCombo);
+
+            this.btnCalendar.Enabled = true;
+        }
+
+        private void dATOSDEPIEZAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            datosPieza();
+        }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            this.panelCalendar.Visible = true;
+        }
+
+        private void btnCerraCalendar_Click(object sender, EventArgs e)
+        {
+            this.panelCalendar.Visible = false;
+        }
+
+        private void dtpCalendar_DropDown(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAceptarCalendar_Click(object sender, EventArgs e)
+        {
+
+            string titulo = "ENTREGA " + id_proy + " (" + this.tbNombre.Text + ")";
+
+            bool programado = false;
+            string fechaProg = "";
+
+            foreach (var eventItem in listaEventos.Items)
+            {
+                if (eventItem.Summary == titulo)
+                {
+                    programado = true;
+                    fechaProg = DateTime.ParseExact(eventItem.Start.Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("dd-MM-yyyy");
+                }
+            }
+
+            if (!programado)
+            {
+                UserCredential credential;
+
+
+                using (var stream =
+                    new FileStream("credenciales.json", FileMode.Open, FileAccess.Read))
+                {
+                    // The file token.json stores the user's access and refresh tokens, and is created
+                    // automatically when the authorization flow completes for the first time.
+                    string credPath = "token.json";
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.FromStream(stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true)).Result;
+                    Console.WriteLine("Archivo de credenciales guardado en : " + credPath);
+                }
+
+
+
+                Event ev = new Event();
+                EventDateTime start = new EventDateTime();
+                EventDateTime end = new EventDateTime();
+                start.Date = dtpCalendar.Value.Date.ToString("yyyy-MM-dd");
+                end.Date = dtpCalendar.Value.Date.ToString("yyyy-MM-dd");
+
+
+                ev.Start = start;
+                ev.End = end;
+                ev.Summary = titulo;
+                ev.Description = "Entrega de proyecto " + id_proy + ": " + this.tbNombre.Text;
+                ev.Description += "\nCliente: " + this.tbCliente.Text;
+
+
+
+                var service = new CalendarService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName,
+                });
+
+                var calendarId = "primary";
+                Event recurringEvent = service.Events.Insert(ev, calendarId).Execute();
+
+                MessageBox.Show("Entrega programada. Consulte Google Calendar para más información.", "ENTREGA DE PROYECTO PROGRAMADA");
+
+                this.panelCalendar.Visible = false;
+                this.dtpCalendar.Value = DateTime.Now;
+            }
+            else
+            {
+                MessageBox.Show("El proyecto actual ya se encuentra programado para el día " + fechaProg + ".\nRevise el evento en Google Calendar.", "ATENCIÓN");
+            }
+
+
+
+            
         }
     }
 }

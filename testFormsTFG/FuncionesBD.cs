@@ -20,9 +20,16 @@ namespace AppGestionTFG
         SqlConnection conn = new SqlConnection(connString);
 
 
-        public int insertar(string tabla, List<string> atb, List<string> valores)
+        public int insertar(string tabla, List<string> atb, List<string> valores, string output)
         {
-            string strsql = "INSERT INTO " + tabla + " (" + string.Join(", ", atb) + ") VALUES ('" + string.Join("', '", valores) + "')";
+            string strsql = "INSERT INTO " + tabla + " (" + string.Join(", ", atb) + ") ";
+
+            if (output != null)
+            {
+                strsql += "OUTPUT INSERTED." + output;
+            }
+            
+            strsql += " VALUES ('" + string.Join("', '", valores) + "')";
 
             int ins;
             conn.Open();
@@ -31,12 +38,31 @@ namespace AppGestionTFG
 
             using (conn)
             {
-                ins = cmd.ExecuteNonQuery();
+                ins = (int)cmd.ExecuteScalar();
             }
 
             conn.Close();
 
             return ins;
+        }
+
+        public int eliminar(string tabla, List<string> cond)
+        {
+            string strsql = "DELETE FROM " + tabla + " WHERE (" + string.Join(" AND ", cond) + ")";
+
+            int del;
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            using (conn)
+            {
+                del = cmd.ExecuteNonQuery();
+            }
+
+            conn.Close();
+
+            return del;
         }
 
         public string obtenerPrivilegiosUsuario(string user, string pass)
@@ -871,7 +897,7 @@ namespace AppGestionTFG
 
             try
             {
-
+                conn.ConnectionString = connString;
                 conn.Open();
 
                 strsql = "";

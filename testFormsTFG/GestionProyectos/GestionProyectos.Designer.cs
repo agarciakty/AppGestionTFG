@@ -30,12 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionProyectos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.button1 = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.test = new System.Windows.Forms.Label();
             this.getEvents = new System.Windows.Forms.Timer(this.components);
-            this.button2 = new System.Windows.Forms.Button();
             this.treeViewProys = new System.Windows.Forms.TreeView();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -45,6 +43,10 @@
             this.labelHeader = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtpFIni = new System.Windows.Forms.DateTimePicker();
+            this.tbNombre = new System.Windows.Forms.TextBox();
+            this.tbDesc = new System.Windows.Forms.TextBox();
+            this.tbCliente = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -73,6 +75,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.nUEVOCOMPONENTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eLIMNARCOMPONENTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dATOSDEPIEZAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tbDescPieza = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -81,37 +84,34 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.btnCerrarPanel3 = new System.Windows.Forms.Button();
-            this.tbCliente = new System.Windows.Forms.TextBox();
-            this.tbDesc = new System.Windows.Forms.TextBox();
-            this.tbNombre = new System.Windows.Forms.TextBox();
-            this.dtpFIni = new System.Windows.Forms.DateTimePicker();
             this.btnAcepNuevoProy = new System.Windows.Forms.Button();
             this.btnCancNuevoproy = new System.Windows.Forms.Button();
+            this.btnCalendar = new System.Windows.Forms.Button();
+            this.panelCalendar = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpCalendar = new System.Windows.Forms.DateTimePicker();
+            this.btnAceptarCalendar = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btnCerraCalendar = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panelOps.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompo)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panelCalendar.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 606);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 68);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // test
             // 
             this.test.AutoSize = true;
-            this.test.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.test.Location = new System.Drawing.Point(12, 540);
+            this.test.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.test.Location = new System.Drawing.Point(14, 40);
             this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(28, 39);
+            this.test.Size = new System.Drawing.Size(13, 17);
             this.test.TabIndex = 1;
             this.test.Text = "-";
             this.test.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -122,18 +122,11 @@
             this.getEvents.Interval = 5000;
             this.getEvents.Tick += new System.EventHandler(this.getEvents_Tick);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(171, 606);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 68);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // treeViewProys
             // 
+            this.treeViewProys.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewProys.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewProys.FullRowSelect = true;
             this.treeViewProys.Location = new System.Drawing.Point(12, 207);
@@ -147,6 +140,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(1161, 75);
@@ -157,6 +151,7 @@
             // 
             // label10
             // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(1055, 75);
@@ -168,6 +163,7 @@
             // 
             // btnEliminar
             // 
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEliminar.BackgroundImage")));
             this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnEliminar.Location = new System.Drawing.Point(1164, 12);
@@ -179,6 +175,7 @@
             // 
             // btnNuevo
             // 
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNuevo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNuevo.BackgroundImage")));
             this.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNuevo.Location = new System.Drawing.Point(1063, 12);
@@ -222,6 +219,8 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.dtpFIni);
             this.panel1.Controls.Add(this.tbNombre);
@@ -235,6 +234,43 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(855, 99);
             this.panel1.TabIndex = 49;
+            // 
+            // dtpFIni
+            // 
+            this.dtpFIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFIni.Location = new System.Drawing.Point(652, 53);
+            this.dtpFIni.Name = "dtpFIni";
+            this.dtpFIni.Size = new System.Drawing.Size(134, 30);
+            this.dtpFIni.TabIndex = 63;
+            // 
+            // tbNombre
+            // 
+            this.tbNombre.AccessibleDescription = "";
+            this.tbNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNombre.Location = new System.Drawing.Point(210, 9);
+            this.tbNombre.Name = "tbNombre";
+            this.tbNombre.Size = new System.Drawing.Size(184, 30);
+            this.tbNombre.TabIndex = 65;
+            // 
+            // tbDesc
+            // 
+            this.tbDesc.AccessibleDescription = "";
+            this.tbDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDesc.Location = new System.Drawing.Point(210, 48);
+            this.tbDesc.Multiline = true;
+            this.tbDesc.Name = "tbDesc";
+            this.tbDesc.Size = new System.Drawing.Size(184, 30);
+            this.tbDesc.TabIndex = 64;
+            // 
+            // tbCliente
+            // 
+            this.tbCliente.AccessibleDescription = "";
+            this.tbCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCliente.Location = new System.Drawing.Point(652, 9);
+            this.tbCliente.Name = "tbCliente";
+            this.tbCliente.Size = new System.Drawing.Size(134, 30);
+            this.tbCliente.TabIndex = 56;
             // 
             // label11
             // 
@@ -278,6 +314,9 @@
             // 
             // panelOps
             // 
+            this.panelOps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelOps.BackColor = System.Drawing.Color.Silver;
             this.panelOps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelOps.Controls.Add(this.btnAceptarOp);
@@ -298,6 +337,7 @@
             // 
             // btnAceptarOp
             // 
+            this.btnAceptarOp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptarOp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAceptarOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptarOp.Location = new System.Drawing.Point(499, 427);
@@ -397,6 +437,7 @@
             // 
             // btnCerrarPanelOps
             // 
+            this.btnCerrarPanelOps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrarPanelOps.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCerrarPanelOps.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarPanelOps.Location = new System.Drawing.Point(648, 9);
@@ -500,20 +541,20 @@
             this.dgvCompo.AllowUserToOrderColumns = true;
             this.dgvCompo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCompo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvCompo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompo.Location = new System.Drawing.Point(13, 230);
             this.dgvCompo.Name = "dgvCompo";
             this.dgvCompo.ReadOnly = true;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvCompo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCompo.Size = new System.Drawing.Size(633, 150);
             this.dgvCompo.TabIndex = 51;
@@ -546,27 +587,38 @@
             this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nUEVOCOMPONENTEToolStripMenuItem,
-            this.eLIMNARCOMPONENTEToolStripMenuItem});
+            this.eLIMNARCOMPONENTEToolStripMenuItem,
+            this.dATOSDEPIEZAToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(227, 68);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(230, 100);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // nUEVOCOMPONENTEToolStripMenuItem
             // 
             this.nUEVOCOMPONENTEToolStripMenuItem.Name = "nUEVOCOMPONENTEToolStripMenuItem";
-            this.nUEVOCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(226, 32);
+            this.nUEVOCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(229, 32);
             this.nUEVOCOMPONENTEToolStripMenuItem.Text = "NUEVA PIEZA";
             this.nUEVOCOMPONENTEToolStripMenuItem.Click += new System.EventHandler(this.nUEVOCOMPONENTEToolStripMenuItem_Click);
             // 
             // eLIMNARCOMPONENTEToolStripMenuItem
             // 
             this.eLIMNARCOMPONENTEToolStripMenuItem.Name = "eLIMNARCOMPONENTEToolStripMenuItem";
-            this.eLIMNARCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(226, 32);
+            this.eLIMNARCOMPONENTEToolStripMenuItem.Size = new System.Drawing.Size(229, 32);
             this.eLIMNARCOMPONENTEToolStripMenuItem.Text = "ELIMINAR PIEZA";
             this.eLIMNARCOMPONENTEToolStripMenuItem.Click += new System.EventHandler(this.eLIMNARCOMPONENTEToolStripMenuItem_Click);
             // 
+            // dATOSDEPIEZAToolStripMenuItem
+            // 
+            this.dATOSDEPIEZAToolStripMenuItem.Name = "dATOSDEPIEZAToolStripMenuItem";
+            this.dATOSDEPIEZAToolStripMenuItem.Size = new System.Drawing.Size(229, 32);
+            this.dATOSDEPIEZAToolStripMenuItem.Text = "DATOS DE PIEZA";
+            this.dATOSDEPIEZAToolStripMenuItem.Click += new System.EventHandler(this.dATOSDEPIEZAToolStripMenuItem_Click);
+            // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.Silver;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.tbDescPieza);
@@ -610,6 +662,7 @@
             // 
             // btnAceptarNuevaPieza
             // 
+            this.btnAceptarNuevaPieza.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptarNuevaPieza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAceptarNuevaPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptarNuevaPieza.Location = new System.Drawing.Point(497, 308);
@@ -642,6 +695,7 @@
             // 
             // btnCerrarPanel3
             // 
+            this.btnCerrarPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrarPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCerrarPanel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarPanel3.Location = new System.Drawing.Point(642, 9);
@@ -652,45 +706,9 @@
             this.btnCerrarPanel3.UseVisualStyleBackColor = false;
             this.btnCerrarPanel3.Click += new System.EventHandler(this.btnCerrarPanel3_Click);
             // 
-            // tbCliente
-            // 
-            this.tbCliente.AccessibleDescription = "";
-            this.tbCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCliente.Location = new System.Drawing.Point(652, 9);
-            this.tbCliente.Name = "tbCliente";
-            this.tbCliente.Size = new System.Drawing.Size(134, 30);
-            this.tbCliente.TabIndex = 56;
-            // 
-            // tbDesc
-            // 
-            this.tbDesc.AccessibleDescription = "";
-            this.tbDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDesc.Location = new System.Drawing.Point(210, 48);
-            this.tbDesc.Multiline = true;
-            this.tbDesc.Name = "tbDesc";
-            this.tbDesc.Size = new System.Drawing.Size(184, 30);
-            this.tbDesc.TabIndex = 64;
-            // 
-            // tbNombre
-            // 
-            this.tbNombre.AccessibleDescription = "";
-            this.tbNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNombre.Location = new System.Drawing.Point(210, 9);
-            this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(184, 30);
-            this.tbNombre.TabIndex = 65;
-            // 
-            // dtpFIni
-            // 
-            this.dtpFIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFIni.Location = new System.Drawing.Point(652, 53);
-            this.dtpFIni.Name = "dtpFIni";
-            this.dtpFIni.Size = new System.Drawing.Size(134, 30);
-            this.dtpFIni.TabIndex = 63;
-            // 
             // btnAcepNuevoProy
             // 
+            this.btnAcepNuevoProy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAcepNuevoProy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAcepNuevoProy.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcepNuevoProy.Location = new System.Drawing.Point(902, 12);
@@ -704,6 +722,7 @@
             // 
             // btnCancNuevoproy
             // 
+            this.btnCancNuevoproy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancNuevoproy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCancNuevoproy.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancNuevoproy.Location = new System.Drawing.Point(902, 99);
@@ -715,13 +734,127 @@
             this.btnCancNuevoproy.Visible = false;
             this.btnCancNuevoproy.Click += new System.EventHandler(this.btnCancNuevoproy_Click);
             // 
+            // btnCalendar
+            // 
+            this.btnCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCalendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalendar.Image = ((System.Drawing.Image)(resources.GetObject("btnCalendar.Image")));
+            this.btnCalendar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCalendar.Location = new System.Drawing.Point(862, 554);
+            this.btnCalendar.Name = "btnCalendar";
+            this.btnCalendar.Size = new System.Drawing.Size(364, 105);
+            this.btnCalendar.TabIndex = 65;
+            this.btnCalendar.Text = "FECHA DE ENTREGA";
+            this.btnCalendar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCalendar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCalendar.UseVisualStyleBackColor = false;
+            this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
+            // 
+            // panelCalendar
+            // 
+            this.panelCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelCalendar.BackColor = System.Drawing.Color.Silver;
+            this.panelCalendar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelCalendar.Controls.Add(this.label1);
+            this.panelCalendar.Controls.Add(this.dtpCalendar);
+            this.panelCalendar.Controls.Add(this.btnAceptarCalendar);
+            this.panelCalendar.Controls.Add(this.label17);
+            this.panelCalendar.Controls.Add(this.btnCerraCalendar);
+            this.panelCalendar.Location = new System.Drawing.Point(238, 218);
+            this.panelCalendar.Name = "panelCalendar";
+            this.panelCalendar.Size = new System.Drawing.Size(706, 263);
+            this.panelCalendar.TabIndex = 66;
+            this.panelCalendar.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(23, 84);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(438, 25);
+            this.label1.TabIndex = 63;
+            this.label1.Text = "NUEVO EVENTO EN GOOGLE CALENDAR";
+            // 
+            // dtpCalendar
+            // 
+            this.dtpCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpCalendar.Location = new System.Drawing.Point(27, 119);
+            this.dtpCalendar.Name = "dtpCalendar";
+            this.dtpCalendar.Size = new System.Drawing.Size(466, 38);
+            this.dtpCalendar.TabIndex = 62;
+            this.dtpCalendar.DropDown += new System.EventHandler(this.dtpCalendar_DropDown);
+            // 
+            // btnAceptarCalendar
+            // 
+            this.btnAceptarCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAceptarCalendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnAceptarCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptarCalendar.Location = new System.Drawing.Point(498, 165);
+            this.btnAceptarCalendar.Name = "btnAceptarCalendar";
+            this.btnAceptarCalendar.Size = new System.Drawing.Size(203, 76);
+            this.btnAceptarCalendar.TabIndex = 61;
+            this.btnAceptarCalendar.Text = "ACEPTAR";
+            this.btnAceptarCalendar.UseVisualStyleBackColor = false;
+            this.btnAceptarCalendar.Click += new System.EventHandler(this.btnAceptarCalendar_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(21, 14);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(459, 39);
+            this.label17.TabIndex = 52;
+            this.label17.Text = "ENTREGA DE PROYECTO";
+            // 
+            // btnCerraCalendar
+            // 
+            this.btnCerraCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCerraCalendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerraCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerraCalendar.Location = new System.Drawing.Point(642, 9);
+            this.btnCerraCalendar.Name = "btnCerraCalendar";
+            this.btnCerraCalendar.Size = new System.Drawing.Size(58, 50);
+            this.btnCerraCalendar.TabIndex = 51;
+            this.btnCerraCalendar.Text = "X";
+            this.btnCerraCalendar.UseVisualStyleBackColor = false;
+            this.btnCerraCalendar.Click += new System.EventHandler(this.btnCerraCalendar_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(3, 10);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(249, 25);
+            this.label16.TabIndex = 67;
+            this.label16.Text = "PRÓXIMAS ENTREGAS";
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.test);
+            this.panel4.Controls.Add(this.label16);
+            this.panel4.Location = new System.Drawing.Point(12, 543);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(329, 148);
+            this.panel4.TabIndex = 68;
+            // 
             // GestionProyectos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1236, 696);
+            this.Controls.Add(this.panelCalendar);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelOps);
             this.Controls.Add(this.panel2);
@@ -734,12 +867,12 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.treeViewProys);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.test);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancNuevoproy);
             this.Controls.Add(this.btnAcepNuevoProy);
+            this.Controls.Add(this.btnCalendar);
+            this.Controls.Add(this.panel4);
             this.Name = "GestionProyectos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de Proyectos";
             this.Load += new System.EventHandler(this.GestionProyectos_Load);
             this.panel1.ResumeLayout(false);
@@ -752,17 +885,18 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panelCalendar.ResumeLayout(false);
+            this.panelCalendar.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label test;
         private System.Windows.Forms.Timer getEvents;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TreeView treeViewProys;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -814,5 +948,15 @@
         private System.Windows.Forms.DateTimePicker dtpFIni;
         private System.Windows.Forms.Button btnAcepNuevoProy;
         private System.Windows.Forms.Button btnCancNuevoproy;
+        private System.Windows.Forms.ToolStripMenuItem dATOSDEPIEZAToolStripMenuItem;
+        private System.Windows.Forms.Button btnCalendar;
+        private System.Windows.Forms.Panel panelCalendar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpCalendar;
+        private System.Windows.Forms.Button btnAceptarCalendar;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button btnCerraCalendar;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Panel panel4;
     }
 }
