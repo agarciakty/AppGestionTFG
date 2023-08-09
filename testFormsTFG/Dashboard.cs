@@ -50,5 +50,11 @@ namespace testFormsTFG
             GestionProyectos.GestionProyectos GP = new GestionProyectos.GestionProyectos();
             GP.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FichajeOperaciones.FichajeOperaciones FO = new FichajeOperaciones.FichajeOperaciones();
+            FO.Show();
+        }
     }
 }

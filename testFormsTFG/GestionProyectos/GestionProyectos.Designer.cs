@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionProyectos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.test = new System.Windows.Forms.Label();
             this.getEvents = new System.Windows.Forms.Timer(this.components);
             this.treeViewProys = new System.Windows.Forms.TreeView();
@@ -95,6 +95,9 @@
             this.btnCerraCalendar = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.labelEstado = new System.Windows.Forms.Label();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelOps.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -131,7 +134,7 @@
             this.treeViewProys.FullRowSelect = true;
             this.treeViewProys.Location = new System.Drawing.Point(12, 207);
             this.treeViewProys.Name = "treeViewProys";
-            this.treeViewProys.Size = new System.Drawing.Size(1214, 330);
+            this.treeViewProys.Size = new System.Drawing.Size(1214, 333);
             this.treeViewProys.TabIndex = 3;
             this.treeViewProys.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewProys_AfterSelect);
             this.treeViewProys.DoubleClick += new System.EventHandler(this.treeViewProys_DoubleClick);
@@ -219,8 +222,6 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.dtpFIni);
             this.panel1.Controls.Add(this.tbNombre);
@@ -331,7 +332,7 @@
             this.panelOps.Controls.Add(this.btnCerrarPanelOps);
             this.panelOps.Location = new System.Drawing.Point(237, 155);
             this.panelOps.Name = "panelOps";
-            this.panelOps.Size = new System.Drawing.Size(711, 519);
+            this.panelOps.Size = new System.Drawing.Size(711, 535);
             this.panelOps.TabIndex = 53;
             this.panelOps.Visible = false;
             // 
@@ -340,7 +341,7 @@
             this.btnAceptarOp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptarOp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAceptarOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptarOp.Location = new System.Drawing.Point(499, 427);
+            this.btnAceptarOp.Location = new System.Drawing.Point(499, 443);
             this.btnAceptarOp.Name = "btnAceptarOp";
             this.btnAceptarOp.Size = new System.Drawing.Size(203, 76);
             this.btnAceptarOp.TabIndex = 61;
@@ -541,20 +542,20 @@
             this.dgvCompo.AllowUserToOrderColumns = true;
             this.dgvCompo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCompo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCompo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvCompo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompo.Location = new System.Drawing.Point(13, 230);
             this.dgvCompo.Name = "dgvCompo";
             this.dgvCompo.ReadOnly = true;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvCompo.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvCompo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCompo.Size = new System.Drawing.Size(633, 150);
             this.dgvCompo.TabIndex = 51;
@@ -630,7 +631,7 @@
             this.panel3.Controls.Add(this.btnCerrarPanel3);
             this.panel3.Location = new System.Drawing.Point(237, 178);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(706, 399);
+            this.panel3.Size = new System.Drawing.Size(706, 415);
             this.panel3.TabIndex = 62;
             this.panel3.Visible = false;
             // 
@@ -665,7 +666,7 @@
             this.btnAceptarNuevaPieza.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptarNuevaPieza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAceptarNuevaPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptarNuevaPieza.Location = new System.Drawing.Point(497, 308);
+            this.btnAceptarNuevaPieza.Location = new System.Drawing.Point(497, 324);
             this.btnAceptarNuevaPieza.Name = "btnAceptarNuevaPieza";
             this.btnAceptarNuevaPieza.Size = new System.Drawing.Size(203, 76);
             this.btnAceptarNuevaPieza.TabIndex = 61;
@@ -741,7 +742,7 @@
             this.btnCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalendar.Image = ((System.Drawing.Image)(resources.GetObject("btnCalendar.Image")));
             this.btnCalendar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCalendar.Location = new System.Drawing.Point(862, 554);
+            this.btnCalendar.Location = new System.Drawing.Point(862, 570);
             this.btnCalendar.Name = "btnCalendar";
             this.btnCalendar.Size = new System.Drawing.Size(364, 105);
             this.btnCalendar.TabIndex = 65;
@@ -765,7 +766,7 @@
             this.panelCalendar.Controls.Add(this.btnCerraCalendar);
             this.panelCalendar.Location = new System.Drawing.Point(238, 218);
             this.panelCalendar.Name = "panelCalendar";
-            this.panelCalendar.Size = new System.Drawing.Size(706, 263);
+            this.panelCalendar.Size = new System.Drawing.Size(706, 279);
             this.panelCalendar.TabIndex = 66;
             this.panelCalendar.Visible = false;
             // 
@@ -793,7 +794,7 @@
             this.btnAceptarCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAceptarCalendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAceptarCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptarCalendar.Location = new System.Drawing.Point(498, 165);
+            this.btnAceptarCalendar.Location = new System.Drawing.Point(498, 181);
             this.btnAceptarCalendar.Name = "btnAceptarCalendar";
             this.btnAceptarCalendar.Size = new System.Drawing.Size(203, 76);
             this.btnAceptarCalendar.TabIndex = 61;
@@ -841,10 +842,45 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.test);
             this.panel4.Controls.Add(this.label16);
-            this.panel4.Location = new System.Drawing.Point(12, 543);
+            this.panel4.Location = new System.Drawing.Point(12, 552);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(329, 148);
             this.panel4.TabIndex = 68;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(722, 164);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(174, 39);
+            this.label20.TabIndex = 69;
+            this.label20.Text = "ESTADO:";
+            // 
+            // labelEstado
+            // 
+            this.labelEstado.AutoSize = true;
+            this.labelEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEstado.Location = new System.Drawing.Point(902, 164);
+            this.labelEstado.Name = "labelEstado";
+            this.labelEstado.Size = new System.Drawing.Size(29, 39);
+            this.labelEstado.TabIndex = 71;
+            this.labelEstado.Text = "-";
+            this.labelEstado.Click += new System.EventHandler(this.labelEstado_Click);
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExcel.BackgroundImage")));
+            this.btnExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcel.Location = new System.Drawing.Point(664, 570);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(192, 105);
+            this.btnExcel.TabIndex = 72;
+            this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // GestionProyectos
             // 
@@ -853,11 +889,12 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1236, 696);
-            this.Controls.Add(this.panelCalendar);
+            this.ClientSize = new System.Drawing.Size(1236, 712);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panelOps);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelOps);
+            this.Controls.Add(this.labelEstado);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.labelHeader);
@@ -866,11 +903,13 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.treeViewProys);
             this.Controls.Add(this.btnCancNuevoproy);
             this.Controls.Add(this.btnAcepNuevoProy);
             this.Controls.Add(this.btnCalendar);
             this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panelCalendar);
+            this.Controls.Add(this.treeViewProys);
+            this.Controls.Add(this.btnExcel);
             this.Name = "GestionProyectos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de Proyectos";
@@ -958,5 +997,8 @@
         private System.Windows.Forms.Button btnCerraCalendar;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label labelEstado;
+        private System.Windows.Forms.Button btnExcel;
     }
 }

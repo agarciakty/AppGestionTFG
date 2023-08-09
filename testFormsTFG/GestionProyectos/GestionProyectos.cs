@@ -19,6 +19,10 @@ using Google.Apis.Calendar.v3.Data;
 using AppGestionTFG;
 using System.Web.UI.WebControls.WebParts;
 using DocumentFormat.OpenXml.EMMA;
+using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
+using System.Xml.Linq;
+using OfficeOpenXml.Style;
 
 namespace testFormsTFG.GestionProyectos
 {
@@ -49,7 +53,13 @@ namespace testFormsTFG.GestionProyectos
         private void cargarProys()
         {
             this.cbProys.Items.Clear();
-            datosProy = fbd.obtenerProys();
+
+            List <string> atb = new List<string>();
+            atb.Add("*");
+
+
+
+            datosProy = fbd.getSelect("tfgdb.dbo.PROYECTOS", atb, null, "ID_PROY");
             foreach (DataRow row in datosProy.Rows)
             {
                 this.cbProys.Items.Add(row[0].ToString() + "#" + row[1].ToString());
@@ -149,6 +159,17 @@ namespace testFormsTFG.GestionProyectos
 
             this.dtpFIni.Value = (DateTime)datosProy.Rows[this.cbProys.SelectedIndex][3];
             dtpFIni.Enabled = false;
+
+            this.labelEstado.Text = datosProy.Rows[this.cbProys.SelectedIndex][6].ToString();
+
+            if (this.labelEstado.Text == "FINALIZADO")
+            {
+                this.labelEstado.ForeColor = Color.Lime;
+            }
+            else
+            {
+                this.labelEstado.ForeColor= Color.Blue;
+            }
 
             poblarTreeView();
         }
@@ -341,7 +362,26 @@ namespace testFormsTFG.GestionProyectos
             this.panelOps.Visible = false;
             this.panel2.Visible = true;
 
-            fbd.nuevaOperacion(this.labelNomPieza.Text, this.cbMPOp.SelectedItem.ToString(), id_proy, operarios.Rows[this.cbOperario.SelectedIndex]["DNI"].ToString(), (this.cbOperaciones.SelectedIndex+1).ToString());
+
+            List<string> atb = new List<string>();
+            atb.Add("PROYECTO");
+            atb.Add("PIEZA");
+            atb.Add("OPERACION");
+            atb.Add("DNI_EMP_ASIGNADO");
+            atb.Add("FECHA_CRE");
+            atb.Add("MP_BASE");
+            atb.Add("ESTADO");
+
+            List<string> valores = new List<string>();
+            valores.Add("'" + id_proy + "'");
+            valores.Add("'" + this.labelNomPieza.Text + "'");
+            valores.Add("'" + (this.cbOperaciones.SelectedIndex + 1).ToString() + "'");
+            valores.Add("'" + operarios.Rows[this.cbOperario.SelectedIndex]["DNI"].ToString() + "'");
+            valores.Add("GETDATE()");
+            valores.Add("'" + this.cbMPOp.SelectedItem.ToString() + "'");
+            valores.Add("'PENDIENTE'");
+
+            fbd.insertar("tfgdb.dbo.OPERACIONES", atb, valores, null);
 
             this.dgvCompo.DataSource = fbd.obtenerComponentesMP(this.treeViewProys.SelectedNode.Name.ToString(), id_proy);
             MessageBox.Show("Nueva operación añadida", "INSERCIÓN COMPLETA");
@@ -462,6 +502,7 @@ namespace testFormsTFG.GestionProyectos
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             this.btnCalendar.Enabled = false;
+            this.btnExcel.Enabled = false;
             this.btnAcepNuevoProy.Visible = true;
             this.btnCancNuevoproy.Visible = true;
 
@@ -501,6 +542,7 @@ namespace testFormsTFG.GestionProyectos
             resetearVistaProyecto();
 
             this.btnCalendar.Enabled = true;
+            this.btnExcel.Enabled = true;
 
         }
 
@@ -530,6 +572,7 @@ namespace testFormsTFG.GestionProyectos
             cbProys.SelectedIndex = cbProys.FindStringExact(proyCombo);
 
             this.btnCalendar.Enabled = true;
+            this.btnExcel.Enabled = true;
         }
 
         private void dATOSDEPIEZAToolStripMenuItem_Click(object sender, EventArgs e)
@@ -628,6 +671,79 @@ namespace testFormsTFG.GestionProyectos
 
 
             
+        }
+
+        private void labelEstado_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            using (var fd = new FolderBrowserDialog())
+            {
+                DialogResult result = fd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fd.SelectedPath))
+                {
+                    ExcelPackage excel = new ExcelPackage();
+                    var worksheet = excel.Workbook.Worksheets.Add("ESTRUCTURA PROYECTO " + id_proy);
+                    int rowCounter = 1;
+
+                    worksheet.Cells["A1:J3"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells["A1:J3"].Style.Fill.BackgroundColor.SetColor(SystemColors.ActiveCaption);
+                    worksheet.Cells["A1:J3"].Style.Font.Bold = true;
+                    worksheet.Cells["A1:J3"].Style.Font.Size = 20;
+
+                    worksheet.Cells[1, 1].Value = "PROYECTO " + id_proy;
+
+                    worksheet.Cells[3, 1].Value = this.tbDesc.Text;
+
+                    worksheet.Cells[1, 5].Value = "CLIENTE: " + this.tbCliente.Text;
+
+                    worksheet.Cells[3, 5].Value = "F. INICIO: " + this.dtpFIni.Text;
+
+
+                    rowCounter = 5;
+
+                    RecurseNodes(treeViewProys.Nodes, 1, true, true);
+
+                    void RecurseNodes(TreeNodeCollection currentNode, int col, bool inicio, bool altern)
+                    {
+                        foreach (TreeNode node in currentNode)
+                        {
+                            if (inicio)
+                            {
+                                rowCounter = rowCounter + 2;
+                                worksheet.Cells[rowCounter, col].Style.Font.Bold = true;
+                                worksheet.Cells[rowCounter, col].Style.Font.Size = 17;
+                            }
+                            else
+                            {
+                                rowCounter = rowCounter + 1;
+                            }
+
+                            if (altern)
+                            {
+                                string rango = "A" + rowCounter + ":J" + rowCounter;
+                                worksheet.Cells[rango].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                                worksheet.Cells[rango].Style.Fill.BackgroundColor.SetColor(SystemColors.GrayText);
+                            }
+
+                            worksheet.Cells[rowCounter, col].Value = node.Text;
+
+
+                            if (node.FirstNode != null)
+                                RecurseNodes(node.Nodes, col + 1, false, !altern);
+                        }
+                    }
+
+
+                    excel.SaveAs(new FileInfo(@"" + fd.SelectedPath + "\\ESQUEMA_PIEZAS_PROY_" + id_proy + ".xlsx"));
+
+
+                    System.Windows.Forms.MessageBox.Show("Exportación completa", "ATENCIÓN");
+                }
+            }
         }
     }
 }

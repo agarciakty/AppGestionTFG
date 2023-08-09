@@ -29,17 +29,18 @@ namespace AppGestionTFG
                 strsql += "OUTPUT INSERTED." + output;
             }
             
-            strsql += " VALUES ('" + string.Join("', '", valores) + "')";
+            strsql += " VALUES (" + string.Join(", ", valores) + ")";
 
-            int ins;
+            int ins = 0;
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(strsql, conn);
 
-            using (conn)
+            if (output != null)
             {
                 ins = (int)cmd.ExecuteScalar();
             }
+            else { cmd.ExecuteNonQuery(); }
 
             conn.Close();
 
@@ -63,6 +64,47 @@ namespace AppGestionTFG
             conn.Close();
 
             return del;
+        }
+
+        public DataTable getSelect(string tabla, List<string> atb, List<string> cond, string order)
+        {
+
+            SqlConnection conn = new SqlConnection(connString);
+
+            conn.Open();
+
+            string strsql = "SELECT " + string.Join(", ", atb) + " FROM " + tabla;
+            
+            if (cond != null)
+            {
+                strsql += " where " + string.Join(" AND ", cond);
+
+                if (order != null && order != "")
+                {
+                    strsql += " ORDER BY " + string.Join(", ", order);
+                }
+            }
+
+
+            
+
+
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            DataTable datos = new DataTable();
+
+            using (conn)
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(
+                    strsql, conn);
+                adapter.Fill(datos);
+            }
+
+
+            conn.Close();
+
+            return datos;
         }
 
         public string obtenerPrivilegiosUsuario(string user, string pass)
