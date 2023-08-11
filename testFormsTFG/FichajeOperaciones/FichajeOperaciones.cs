@@ -42,13 +42,21 @@ namespace testFormsTFG.FichajeOperaciones
         private void cargarOps(string dniOperario)
         {
             List<string> atb = new List<string>();
-            atb.Add("*");
+            atb.Add("PROYECTO");
+            atb.Add("PIEZA");
+            atb.Add("FECHA_CRE AS [FECHA]");
+            atb.Add("MP_BASE as [MATERIA PRIMA]");
+            atb.Add("ESTADO");
+            atb.Add("NOMBRE_OPERACION as [OPERACIÓN]");
+            atb.Add("DNI_EMP_ASIGNADO");
+            atb.Add("OPERACION AS N_OPE");
+
 
             List<string> cond = new List<string>();
             cond.Add("ESTADO NOT LIKE 'FINALIZADA'");
             cond.Add("DNI_EMP_ASIGNADO LIKE '" + dniOperario + "'");
 
-            datosOpe = fbd.getSelect("tfgdb.dbo.OPERACIONES", atb, cond, "FECHA_CRE ASC");
+            datosOpe = fbd.getSelect("tfgdb.dbo.OPERACIONES oper left join tfgdb.dbo.TIPOS_OPER tope ON tope.ID_OPERACION = oper.OPERACION", atb, cond, "FECHA_CRE ASC");
 
             this.dgvOps.DataSource = datosOpe;
         }
@@ -66,12 +74,36 @@ namespace testFormsTFG.FichajeOperaciones
                 cond.Add("DNI LIKE '" + this.tbInvOper.Text + "'");
 
                 this.tbOperario.Text = fbd.getSelect("rrhh_db.dbo.PERSONAL", atb, cond, null).Rows[0][0].ToString();
+
+                this.dgvOps.Columns["PROYECTO"].Visible = false;
+                this.dgvOps.Columns["DNI_EMP_ASIGNADO"].Visible = false;
+                this.dgvOps.Columns["N_OPE"].Visible = false;
+
             }
         }
 
         private void cbProy_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnIni_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in this.dgvOps.SelectedRows)
+            {
+                List<string> atb = new List<string>();
+                atb.Add("FECHA_INI = GETDATE()");
+                atb.Add("ESTADO = 'EN PROCESO'");
+
+                List<string> cond = new List<string>();
+                cond.Add("DNI_EMP_ASIGNADO LIKE '" + this.tbInvOper.Text + "'");
+                cond.Add("PROYECTO LIKE '" + row.Cells["PROYECTO"].Value.ToString() + "'");
+                cond.Add("PIEZA LIKE '" + row.Cells["PIEZA"].Value.ToString() + "'");
+                cond.Add("OPERACION LIKE '" + row.Cells["N_OPE"].Value.ToString() + "'");
+
+                fbd.actualizar("tfgdb.dbo.OPERACIONES", atb, cond, null);
+                cargarOps(this.tbInvOper.Text);
+            }
         }
     }
 }

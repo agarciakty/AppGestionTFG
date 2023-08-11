@@ -107,6 +107,35 @@ namespace AppGestionTFG
             return datos;
         }
 
+        public int actualizar(string tabla, List<string> atb, List<string> cond, string output)
+        {
+            string strsql = "UPDATE " + tabla + " SET " + string.Join(", ", atb) + " ";
+
+            if (output != null)
+            {
+                strsql += "OUTPUT INSERTED." + output;
+            }
+
+            strsql += " WHERE (" + string.Join("AND ", cond) + ")";
+
+            int upd = 0;
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(strsql, conn);
+
+            if (output != null)
+            {
+                upd = (int)cmd.ExecuteScalar();
+            }
+            else { cmd.ExecuteNonQuery(); }
+
+            conn.Close();
+
+            return upd;
+        }
+
+
+
         public string obtenerPrivilegiosUsuario(string user, string pass)
         {
             string priv = "";

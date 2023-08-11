@@ -47,7 +47,7 @@
             // tbInvOper
             // 
             this.tbInvOper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbInvOper.Location = new System.Drawing.Point(1202, 12);
+            this.tbInvOper.Location = new System.Drawing.Point(1322, 12);
             this.tbInvOper.Name = "tbInvOper";
             this.tbInvOper.Size = new System.Drawing.Size(100, 20);
             this.tbInvOper.TabIndex = 0;
@@ -87,10 +87,13 @@
             this.dgvOps.AllowUserToAddRows = false;
             this.dgvOps.AllowUserToDeleteRows = false;
             this.dgvOps.AllowUserToResizeRows = false;
+            this.dgvOps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvOps.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvOps.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvOps.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOps.Location = new System.Drawing.Point(12, 161);
+            this.dgvOps.MultiSelect = false;
             this.dgvOps.Name = "dgvOps";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -101,7 +104,8 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvOps.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOps.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvOps.Size = new System.Drawing.Size(959, 655);
+            this.dgvOps.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvOps.Size = new System.Drawing.Size(1079, 655);
             this.dgvOps.TabIndex = 4;
             // 
             // label2
@@ -120,7 +124,7 @@
             this.cbProy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProy.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbProy.FormattingEnabled = true;
-            this.cbProy.Location = new System.Drawing.Point(1104, 116);
+            this.cbProy.Location = new System.Drawing.Point(1223, 46);
             this.cbProy.Name = "cbProy";
             this.cbProy.Size = new System.Drawing.Size(198, 46);
             this.cbProy.TabIndex = 6;
@@ -131,7 +135,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(882, 119);
+            this.label3.Location = new System.Drawing.Point(1001, 49);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(216, 39);
             this.label3.TabIndex = 7;
@@ -142,19 +146,20 @@
             this.btnIni.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIni.BackColor = System.Drawing.Color.Yellow;
             this.btnIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIni.Location = new System.Drawing.Point(977, 204);
+            this.btnIni.Location = new System.Drawing.Point(1096, 404);
             this.btnIni.Name = "btnIni";
             this.btnIni.Size = new System.Drawing.Size(325, 124);
             this.btnIni.TabIndex = 8;
             this.btnIni.Text = "INICIO";
             this.btnIni.UseVisualStyleBackColor = false;
+            this.btnIni.Click += new System.EventHandler(this.btnIni_Click);
             // 
             // btnFin
             // 
             this.btnFin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFin.Location = new System.Drawing.Point(978, 334);
+            this.btnFin.Location = new System.Drawing.Point(1097, 534);
             this.btnFin.Name = "btnFin";
             this.btnFin.Size = new System.Drawing.Size(325, 124);
             this.btnFin.TabIndex = 9;
@@ -167,7 +172,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.Red;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(978, 522);
+            this.btnCancelar.Location = new System.Drawing.Point(1097, 722);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(325, 94);
             this.btnCancelar.TabIndex = 10;
@@ -178,7 +183,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1314, 828);
+            this.ClientSize = new System.Drawing.Size(1434, 828);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnFin);
             this.Controls.Add(this.btnIni);
