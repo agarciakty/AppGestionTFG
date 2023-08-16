@@ -22,15 +22,17 @@ namespace AppGestionTFG
 
             Principal ppal = new Principal();
             Dashboard dash = new Dashboard();
-            //Application.Run(ppal);
+            Application.Run(ppal);
 
 
-            /*if (ppal.user != "")
+            if (ppal.userGral != "")
             {
+                dash.user = ppal.userGral;
+                dash.permisos = ppal.permisos;
                 Application.Run(dash);
-            }*/
+            }
 
-            Application.Run(dash);
+            //Application.Run(dash);
         }
     }
 }

@@ -14,7 +14,8 @@ namespace testFormsTFG
     public partial class Dashboard : Form
     {
 
-        string user = "";
+        public string user;
+        public DataTable permisos = new DataTable();
 
         public Dashboard()
         {
@@ -23,8 +24,7 @@ namespace testFormsTFG
 
         private void btnCPersonal_Click(object sender, EventArgs e)
         {
-            ControlPersonal.ControlPersonal cp = new ControlPersonal.ControlPersonal();
-            cp.Show();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -56,5 +56,11 @@ namespace testFormsTFG
             FichajeOperaciones.FichajeOperaciones FO = new FichajeOperaciones.FichajeOperaciones();
             FO.Show();
         }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            this.labelUser.Text = user;
+        }
+
     }
 }

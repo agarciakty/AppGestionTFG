@@ -693,12 +693,16 @@ namespace AppGestionTFG
             {
                 conn.Open();
 
-                string strsql = "INSERT INTO tfgdb.dbo.PAQUETES_MP (PAQUETE, ARTICULO, CANTIDAD, FECHA_C) VALUES ('" + paquete + "', '" + codigo + "', '" + cantidad + "', GETDATE()) ";
+                string strsql = "INSERT INTO tfgdb.dbo.PAQUETES_MP (PAQUETE, ARTICULO, CANTIDAD, CANTIDAD_REAL, FECHA_C) VALUES ('" + paquete + "', '" + codigo + "', '" + cantidad + "', '" + cantidad + "', GETDATE()) ";
                 SqlCommand cmd = new SqlCommand(strsql, conn);
+
+                string strsql2 = "UPDATE tfgdb.dbo.ARTICULOS_MP SET STOCK = (STOCK + " + cantidad + ") WHERE CODIGO = '" + codigo + "'";
+                SqlCommand cmd2 = new SqlCommand(strsql2, conn);
 
                 using (conn)
                 {
                     ins = cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                 }
 
                 conn.Close();

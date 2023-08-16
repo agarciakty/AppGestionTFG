@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,27 +16,27 @@ namespace AppGestionTFG
     public partial class Principal : Form
     {
 
-        FuncionesBD dbu;
-        public string user = "";
+        FuncionesBD fbd = new FuncionesBD();
+        public string userGral = "";
+        SqlConnection conn = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True");
+        public DataTable permisos = new DataTable();
 
         public Principal()
         {
             InitializeComponent();
             textBoxPass.UseSystemPasswordChar = true;
-            dbu = new FuncionesBD();
 
         }
 
         private void Principal_KeyDown1(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
-            SqlConnection conn = new SqlConnection(connString);
+            
 
             conn.Open();
 
@@ -91,20 +92,82 @@ namespace AppGestionTFG
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string priv = "";
-            if (dbu.obtenerPrivilegiosUsuario(textBoxUser.Text, textBoxPass.Text) == "DENIED")
-            {
-                labelFalloPassword.Text = "Usuario o contraseña incorrectos";
-                labelFalloPassword.Visible = true;
-            }
-            else
-            {
-                labelFalloPassword.Text = "";
-                labelFalloPassword.Visible = false;
+            SelectData(this.textBoxUser.Text, this.textBoxPass.Text);
+        }
 
-                user = this.textBoxUser.Text;
-                this.Close();
+        private static string HashString(string passwordString)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in GetHash(passwordString))
+                sb.Append(b.ToString("X3"));
+            return sb.ToString();
+        }
+
+        private static byte[] GetHash(string passwordString)
+        {
+            using (HashAlgorithm algorithm = SHA256.Create())
+                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(passwordString));
+        }
+
+        private string SelectData(string user, string pass)
+        {
+            try
+            {
+                string priv = "";
+
+                conn.Open();
+                DataTable datos = new DataTable();
+                
+                string passSHA = HashString(pass);
+
+
+                List<string> atb = new List<string>();
+                atb.Add("*");
+
+                List<string> cond = new List<string>();
+                cond.Add("pass = '" + passSHA + "'");
+                cond.Add("usuario = '" + user + "'");
+
+                datos = fbd.getSelect("tfgdb.dbo.USUARIOS_PRIV", atb, cond, null);
+
+                if (datos.Rows.Count != 0)
+                {
+                    labelFalloPassword.Text = "";
+                    labelFalloPassword.Visible = false;
+
+                    List<string> atb2 = new List<string>();
+                    atb2.Add("APP");
+
+                    List<string> cond2 = new List<string>();
+                    cond2.Add("usuario = '" + user + "'");
+                    permisos = fbd.getSelect("tfgdb.dbo.PERMISOS_APPS", atb2, cond2, null);
+
+
+                    userGral = this.textBoxUser.Text;
+                    this.Close();
+                }
+                else
+                {
+                    labelFalloPassword.Text = "Usuario o contraseña incorrectos";
+                    labelFalloPassword.Visible = true;
+                }
+
+                return priv;
             }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -175,5 +175,42 @@ namespace testFormsTFG.ControlPersonal
         {
             filtrar();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dgvPersonal.SelectedRows.Count > 0)
+            {
+                DialogResult dr = MessageBox.Show("Se van a dar de baja a los empleados seleccionados, ¿Continuar?",
+                      "ATENCIÓN", MessageBoxButtons.YesNo);
+                switch (dr)
+                {
+                    case DialogResult.Yes:
+
+                        foreach (DataGridViewRow row in dgvPersonal.SelectedRows)
+                        {
+                            List<string> atb = new List<string>();
+                            atb.Add("F_BAJA = GETDATE()");
+
+                            List<string> cond = new List<string>();
+                            cond.Add("DNI = '" + row.Cells["DNI"].Value.ToString() + "'");
+
+                            fbd.actualizar("rrhh_db.dbo.PERSONAL", atb, cond, null);
+
+                            MessageBox.Show("Se ha dado de baja al empleado con ID " + row.Cells[0].Value.ToString(), "BAJA PROCESADA");
+                        }
+
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+                
+
+
+            }
+            else
+            {
+                MessageBox.Show("Seleccione a un empleado", "NO HA SELECCIONADO PERSONAL");
+            }
+        }
     }
 }

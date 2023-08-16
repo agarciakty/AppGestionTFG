@@ -51,6 +51,7 @@ namespace testFormsTFG.FichajeOperaciones
             atb.Add("DNI_EMP_ASIGNADO");
             atb.Add("OPERACION AS N_OPE");
             atb.Add("PARCELA_MATERIAL");
+            atb.Add("PAQ_MATERIAL");
 
 
             List<string> cond = new List<string>();
@@ -94,6 +95,7 @@ namespace testFormsTFG.FichajeOperaciones
                     this.dgvOps.Columns["DNI_EMP_ASIGNADO"].Visible = false;
                     this.dgvOps.Columns["N_OPE"].Visible = false;
                     this.dgvOps.Columns["PARCELA_MATERIAL"].Visible = false;
+                    this.dgvOps.Columns["PAQ_MATERIAL"].Visible = false;
                 }
 
             }
@@ -160,6 +162,24 @@ namespace testFormsTFG.FichajeOperaciones
                     cond.Add("OPERACION LIKE '" + row.Cells["N_OPE"].Value.ToString() + "'");
 
                     fbd.actualizar("tfgdb.dbo.OPERACIONES", atb, cond, null);
+
+
+                    atb.Clear();
+                    atb.Add("STOCK = (STOCK - 1)");
+
+                    cond.Clear();
+                    cond.Add("CODIGO = '" + row.Cells["MATERIA PRIMA"].Value.ToString() + "'");
+
+                    fbd.actualizar("tfgdb.dbo.ARTICULOS_MP", atb, cond, null);
+
+                    atb.Clear();
+                    atb.Add("CANTIDAD_REAL = (CANTIDAD_REAL - 1)");
+
+                    cond.Clear();
+                    cond.Add("ARTICULO = '" + row.Cells["MATERIA PRIMA"].Value.ToString() + "'");
+                    cond.Add("PAQUETE = '" + this.labelPaq.Text + "'");
+
+                    fbd.actualizar("tfgdb.dbo.PAQUETES_MP", atb, cond, null);
 
 
                     MessageBox.Show("Operación de " + row.Cells[5].Value.ToString() + " finalizada para pieza " + row.Cells["PIEZA"].Value.ToString(), "ATENCIÓN");
@@ -230,26 +250,29 @@ namespace testFormsTFG.FichajeOperaciones
         {
             foreach (DataGridViewRow row in this.dgvOps.SelectedRows)
             {
+                this.labelProy.Text = row.Cells["PROYECTO"].Value.ToString();
+
+                this.labelParcelasPieza.Text = "PARCELAS CON STOCK DE " + row.Cells["MATERIA PRIMA"].Value.ToString();
+                List<string> atb = new List<string>();
+                atb.Add("PAQUETE");
+                atb.Add("CANTIDAD_REAL AS [CANTIDAD]");
+                atb.Add("(SELECT TOP (1) PARCELA FROM tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN pea WHERE pea.N_PAQUETE = pmp.PAQUETE order by FECHA_RECP desc ) as PARCELA");
+
+                List<string> cond = new List<string>();
+                cond.Add("ARTICULO = '" + row.Cells["MATERIA PRIMA"].Value.ToString() + "'");
+                cond.Add("CANTIDAD_REAL > '0'");
+
+                this.dgvParcelas.DataSource = fbd.getSelect("tfgdb.dbo.PAQUETES_MP pmp", atb, cond, "CANTIDAD_REAL DESC");
+
                 if (string.IsNullOrEmpty(row.Cells["PARCELA_MATERIAL"].Value.ToString()))
                 {
-                    this.labelProy.Text = row.Cells["PROYECTO"].Value.ToString();
-
-                    this.labelParcelasPieza.Text = "PARCELAS CON STOCK DE " + row.Cells["MATERIA PRIMA"].Value.ToString();
-                    List<string> atb = new List<string>();
-                    atb.Add("PAQUETE");
-                    atb.Add("CANTIDAD_REAL AS [CANTIDAD]");
-                    atb.Add("(SELECT TOP (1) PARCELA FROM tfgdb.dbo.PAQUETES_ENTRADA_ALMACEN pea WHERE pea.N_PAQUETE = pmp.PAQUETE order by FECHA_RECP desc ) as PARCELA");
-
-                    List<string> cond = new List<string>();
-                    cond.Add("ARTICULO = '" + row.Cells["MATERIA PRIMA"].Value.ToString() + "'");
-
-                    this.dgvParcelas.DataSource = fbd.getSelect("tfgdb.dbo.PAQUETES_MP pmp", atb, cond, "CANTIDAD_REAL DESC");
-
                     this.labelParcela.Text = this.dgvParcelas.Rows[0].Cells[2].Value.ToString();
+                    this.labelPaq.Text = this.dgvParcelas.Rows[0].Cells[1].Value.ToString();
                 }
                 else
                 {
                     this.labelParcela.Text = row.Cells["PARCELA_MATERIAL"].Value.ToString();
+                    this.labelPaq.Text = row.Cells["PAQ_MATERIAL"].Value.ToString();
                 }
             }
 
@@ -264,6 +287,7 @@ namespace testFormsTFG.FichajeOperaciones
 
                 List<string> atb = new List<string>();
                 atb.Add("PARCELA_MATERIAL = '" + dgvParcelas.SelectedRows[0].Cells[2].Value.ToString() + "'");
+                atb.Add("PAQ_MATERIAL = '" + dgvParcelas.SelectedRows[0].Cells[0].Value.ToString() + "'");
 
                 List<string> cond = new List<string>();
                 cond.Add("DNI_EMP_ASIGNADO LIKE '" + this.tbInvOper.Text + "'");

@@ -46,13 +46,15 @@
             this.labelNomPro = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.labelParcelasPieza = new System.Windows.Forms.Label();
+            this.dgvParcelas = new System.Windows.Forms.DataGridView();
             this.btnCerrarPanel3 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.labelParcela = new System.Windows.Forms.Label();
-            this.dgvParcelas = new System.Windows.Forms.DataGridView();
-            this.labelParcelasPieza = new System.Windows.Forms.Label();
             this.labelProy = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelPaq = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOps)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParcelas)).BeginInit();
@@ -243,39 +245,29 @@
             this.panel1.TabIndex = 13;
             this.panel1.Visible = false;
             // 
-            // btnCerrarPanel3
+            // button3
             // 
-            this.btnCerrarPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCerrarPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnCerrarPanel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrarPanel3.Location = new System.Drawing.Point(758, 6);
-            this.btnCerrarPanel3.Name = "btnCerrarPanel3";
-            this.btnCerrarPanel3.Size = new System.Drawing.Size(58, 50);
-            this.btnCerrarPanel3.TabIndex = 52;
-            this.btnCerrarPanel3.Text = "X";
-            this.btnCerrarPanel3.UseVisualStyleBackColor = false;
-            this.btnCerrarPanel3.Click += new System.EventHandler(this.btnCerrarPanel3_Click);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(521, 447);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(274, 92);
+            this.button3.TabIndex = 55;
+            this.button3.Text = "SELECCIONAR PARCELA";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label4
+            // labelParcelasPieza
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1200, 222);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(233, 25);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "PARCELA MATERIAL:";
-            // 
-            // labelParcela
-            // 
-            this.labelParcela.AutoSize = true;
-            this.labelParcela.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelParcela.ForeColor = System.Drawing.Color.DarkGreen;
-            this.labelParcela.Location = new System.Drawing.Point(1244, 268);
-            this.labelParcela.Name = "labelParcela";
-            this.labelParcela.Size = new System.Drawing.Size(46, 63);
-            this.labelParcela.TabIndex = 15;
-            this.labelParcela.Text = "-";
+            this.labelParcelasPieza.AutoSize = true;
+            this.labelParcelasPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelParcelasPieza.Location = new System.Drawing.Point(20, 19);
+            this.labelParcelasPieza.Name = "labelParcelasPieza";
+            this.labelParcelasPieza.Size = new System.Drawing.Size(28, 39);
+            this.labelParcelasPieza.TabIndex = 54;
+            this.labelParcelasPieza.Text = "-";
             // 
             // dgvParcelas
             // 
@@ -304,15 +296,39 @@
             this.dgvParcelas.Size = new System.Drawing.Size(768, 342);
             this.dgvParcelas.TabIndex = 53;
             // 
-            // labelParcelasPieza
+            // btnCerrarPanel3
             // 
-            this.labelParcelasPieza.AutoSize = true;
-            this.labelParcelasPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelParcelasPieza.Location = new System.Drawing.Point(20, 19);
-            this.labelParcelasPieza.Name = "labelParcelasPieza";
-            this.labelParcelasPieza.Size = new System.Drawing.Size(28, 39);
-            this.labelParcelasPieza.TabIndex = 54;
-            this.labelParcelasPieza.Text = "-";
+            this.btnCerrarPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCerrarPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerrarPanel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarPanel3.Location = new System.Drawing.Point(758, 6);
+            this.btnCerrarPanel3.Name = "btnCerrarPanel3";
+            this.btnCerrarPanel3.Size = new System.Drawing.Size(58, 50);
+            this.btnCerrarPanel3.TabIndex = 52;
+            this.btnCerrarPanel3.Text = "X";
+            this.btnCerrarPanel3.UseVisualStyleBackColor = false;
+            this.btnCerrarPanel3.Click += new System.EventHandler(this.btnCerrarPanel3_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(1200, 227);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(119, 25);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "PARCELA:";
+            // 
+            // labelParcela
+            // 
+            this.labelParcela.AutoSize = true;
+            this.labelParcela.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelParcela.ForeColor = System.Drawing.Color.DarkGreen;
+            this.labelParcela.Location = new System.Drawing.Point(1327, 202);
+            this.labelParcela.Name = "labelParcela";
+            this.labelParcela.Size = new System.Drawing.Size(46, 63);
+            this.labelParcela.TabIndex = 15;
+            this.labelParcela.Text = "-";
             // 
             // labelProy
             // 
@@ -324,27 +340,38 @@
             this.labelProy.TabIndex = 16;
             this.labelProy.Text = "-";
             // 
-            // button3
+            // label5
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(521, 447);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(274, 92);
-            this.button3.TabIndex = 55;
-            this.button3.Text = "SELECCIONAR PARCELA";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(1200, 293);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(122, 25);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "PAQUETE:";
+            // 
+            // labelPaq
+            // 
+            this.labelPaq.AutoSize = true;
+            this.labelPaq.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPaq.ForeColor = System.Drawing.Color.DarkGreen;
+            this.labelPaq.Location = new System.Drawing.Point(1327, 268);
+            this.labelPaq.Name = "labelPaq";
+            this.labelPaq.Size = new System.Drawing.Size(46, 63);
+            this.labelPaq.TabIndex = 15;
+            this.labelPaq.Text = "-";
             // 
             // FichajeOperaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1537, 828);
             this.Controls.Add(this.labelProy);
+            this.Controls.Add(this.labelPaq);
             this.Controls.Add(this.labelParcela);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button2);
@@ -395,5 +422,7 @@
         private System.Windows.Forms.DataGridView dgvParcelas;
         private System.Windows.Forms.Label labelProy;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelPaq;
     }
 }

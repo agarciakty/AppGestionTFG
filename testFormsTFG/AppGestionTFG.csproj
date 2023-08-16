@@ -131,6 +131,12 @@
     <Compile Include="Articulos\Articulos.Designer.cs">
       <DependentUpon>Articulos.cs</DependentUpon>
     </Compile>
+    <Compile Include="BotonAplicacion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BotonAplicacion.Designer.cs">
+      <DependentUpon>BotonAplicacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlPersonal\ControlPersonal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     <Compile Include="TestUser.cs" />
     <EmbeddedResource Include="Articulos\Articulos.resx">
       <DependentUpon>Articulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BotonAplicacion.resx">
+      <DependentUpon>BotonAplicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlPersonal\ControlPersonal.resx">
       <DependentUpon>ControlPersonal.cs</DependentUpon>
