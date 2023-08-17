@@ -51,16 +51,76 @@ namespace testFormsTFG
             GP.Show();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            FichajeOperaciones.FichajeOperaciones FO = new FichajeOperaciones.FichajeOperaciones();
-            FO.Show();
-        }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
             this.labelUser.Text = user;
         }
 
+        private void btnPersonal_Load(object sender, EventArgs e)
+        {
+            this.btnPersonal.BotonAplicacionClick += BtnPersonal_BotonAplicacionClick;
+        }
+
+        private void BtnPersonal_BotonAplicacionClick()
+        {
+            ControlPersonal.ControlPersonal CP = new ControlPersonal.ControlPersonal();
+            CP.Show();
+        }
+
+        private void btnRecMP_Load(object sender, EventArgs e)
+        {
+            this.btnRecMP.BotonAplicacionClick += BtnRecMP_BotonAplicacionClick;
+        }
+
+        private void BtnRecMP_BotonAplicacionClick()
+        {
+            MateriaPrima.MateriaPrima MP = new MateriaPrima.MateriaPrima();
+            MP.Show();
+        }
+
+        private void btnOps_Load(object sender, EventArgs e)
+        {
+            this.btnOps.BotonAplicacionClick += BtnOps_BotonAplicacionClick;
+        }
+
+        private void BtnOps_BotonAplicacionClick()
+        {
+            FichajeOperaciones.FichajeOperaciones FO = new FichajeOperaciones.FichajeOperaciones();
+            FO.Show();
+        }
+
+        private void btnArt_Load(object sender, EventArgs e)
+        {
+            this.btnArt.BotonAplicacionClick += BtnArt_BotonAplicacionClick;
+        }
+
+        private void BtnArt_BotonAplicacionClick()
+        {
+            Articulos.Articulos ART = new Articulos.Articulos();
+            ART.Show();
+        }
+
+        private void btnProys_Load(object sender, EventArgs e)
+        {
+            this.btnProys.BotonAplicacionClick += BtnProys_BotonAplicacionClick;
+        }
+
+        private void BtnProys_BotonAplicacionClick()
+        {
+            GestionProyectos.GestionProyectos GP = new GestionProyectos.GestionProyectos();
+            GP.Show();
+        }
+
+        private void btnPaqs_Load(object sender, EventArgs e)
+        {
+            this.btnPaqs.BotonAplicacionClick += BtnPaqs_BotonAplicacionClick;
+        }
+
+        private void BtnPaqs_BotonAplicacionClick()
+        {
+            PaquetesAlmacen.PaquetesAlmacen PAQ = new PaquetesAlmacen.PaquetesAlmacen();
+            PAQ.Show();
+        }
     }
 }

@@ -42,5 +42,15 @@ namespace ImeApps
         {
             if (BotonAplicacionClick != null) BotonAplicacionClick();
         }
+
+        private void BotonAplicacion_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BotonAplicacion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

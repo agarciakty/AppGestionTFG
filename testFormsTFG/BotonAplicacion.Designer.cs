@@ -60,6 +60,8 @@
             this.Controls.Add(this.btnImagen);
             this.Name = "BotonAplicacion";
             this.Size = new System.Drawing.Size(255, 157);
+            this.Load += new System.EventHandler(this.BotonAplicacion_Load);
+            this.Click += new System.EventHandler(this.BotonAplicacion_Click);
             this.ResumeLayout(false);
 
         }
