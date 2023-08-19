@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppGestionTFG;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,7 @@ namespace testFormsTFG
 
         public string user;
         public DataTable permisos = new DataTable();
+        FuncionesBD fbd = new FuncionesBD();
 
         public Dashboard()
         {
@@ -55,6 +57,41 @@ namespace testFormsTFG
         private void Dashboard_Load(object sender, EventArgs e)
         {
             this.labelUser.Text = user;
+
+            List<string> atb = new List<string>();
+            atb.Add("APP");
+
+            List<string> cnd = new List<string>();
+            cnd.Add("usuario = '" + user + "'");
+
+            permisos = fbd.getSelect("tfgdb.dbo.PERMISOS_APPS", atb, cnd, "app");
+
+            List<string> s = permisos.AsEnumerable().Select(x => x[0].ToString()).ToList();
+
+            if (!s.Contains("1"))
+            {
+                this.btnPersonal.Visible = false;
+            }
+            if (!s.Contains("2"))
+            {
+                this.btnProys.Visible = false;
+            }
+            if (!s.Contains("3"))
+            {
+                this.btnArt.Visible = false;
+            }
+            if (!s.Contains("4"))
+            {
+                this.btnRecMP.Visible = false;
+            }
+            if (!s.Contains("5"))
+            {
+                this.btnPaqs.Visible = false;
+            }
+            if (!s.Contains("6"))
+            {
+                this.btnOps.Visible = false;
+            }
         }
 
         private void btnPersonal_Load(object sender, EventArgs e)
